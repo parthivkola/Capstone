@@ -1,0 +1,7 @@
+# ADR 010: Supervise blocking SDN collection in a child process
+
+- **Status:** Accepted for the benign validation runner; live behavior not integration-tested.
+- **Context:** Mininet topology startup, host command calls, collection waits, and teardown are synchronous and may block. In-process Python timeouts cannot interrupt them reliably. A blocked cleanup could leave OVS state or child processes behind.
+- **Decision:** Run the benign Stage 7 worker in a fresh process group. The parent imposes a finite wall deadline, escalates bounded SIGINT/SIGTERM/SIGKILL, checks process-group exit, and independently checks the owned `s1` bridge and Ryu listener. Reject existing output paths before spawning, assign the run ID in the parent, and fail the run if cleanup cannot be verified. Keep the workload to bounded ICMP connectivity observation.
+- **Alternatives:** Add timeout arguments to synchronous Mininet methods (not reliable for a blocked call); switch to a new topology framework (unnecessary rewrite); report cleanup successful based only on `network.stop()` returning (not independent evidence).
+- **Consequences:** Startup, workload, collection, and teardown share the parent wall-time bound. A hard kill may still leave network state; the runner must report that failure for manual recovery rather than claiming success. Offline fake-process tests cover deadline and escalation behavior, but no privileged/live run was performed.

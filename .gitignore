@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+
+# Environments and local configuration
+.venv/
+.venv-ryu/
+venv/
+.env
+!.env.example
+*.log
+
+# SQLite runtime databases (ephemeral, not models)
+var/runtime/*.json
+# Note: var/models/ is intentionally tracked — pre-trained models included
+
+# Editors and operating systems
+.vscode/
+.idea/
+*~
+.DS_Store
+Thumbs.db
+
+# Raw dataset files (large, must be downloaded separately)
+data/
+datasets/
+*.pcap
+*.pcapng
+*.cap
+
+# Generated report outputs (keep source, exclude built outputs)
+reports/generated/
+experiments/**/outputs/
+experiments/**/runs/
+experiments/stage7-telemetry/
+
+# Node.js dependencies (install with npm ci)
+node_modules/
+
+# Keep pre-built frontend dist so users don't need Node.js to run
+# apps/frontend/dist/ is intentionally tracked

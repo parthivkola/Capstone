@@ -1,0 +1,641 @@
+{
+  "schema_version": 1,
+  "study": "Stage 7 real detector integration readiness",
+  "model_input": {
+    "dataset": "CSE-CIC-IDS2018 prepared Stage 5D source-file holdout features",
+    "target": "Label (not a predictor)",
+    "estimator": "sklearn RandomForestClassifier",
+    "configuration_source": "experiments/stage5d/cse-source-holdout-rf.json",
+    "feature_schema_source": "experiments/stage5d/cse-preparation.json",
+    "predictor_count": 77,
+    "predictor_dtype": "float32",
+    "ordered_feature_names": [
+      "Protocol",
+      "Flow Duration",
+      "Tot Fwd Pkts",
+      "Tot Bwd Pkts",
+      "TotLen Fwd Pkts",
+      "TotLen Bwd Pkts",
+      "Fwd Pkt Len Max",
+      "Fwd Pkt Len Min",
+      "Fwd Pkt Len Mean",
+      "Fwd Pkt Len Std",
+      "Bwd Pkt Len Max",
+      "Bwd Pkt Len Min",
+      "Bwd Pkt Len Mean",
+      "Bwd Pkt Len Std",
+      "Flow Byts/s",
+      "Flow Pkts/s",
+      "Flow IAT Mean",
+      "Flow IAT Std",
+      "Flow IAT Max",
+      "Flow IAT Min",
+      "Fwd IAT Tot",
+      "Fwd IAT Mean",
+      "Fwd IAT Std",
+      "Fwd IAT Max",
+      "Fwd IAT Min",
+      "Bwd IAT Tot",
+      "Bwd IAT Mean",
+      "Bwd IAT Std",
+      "Bwd IAT Max",
+      "Bwd IAT Min",
+      "Fwd PSH Flags",
+      "Bwd PSH Flags",
+      "Fwd URG Flags",
+      "Bwd URG Flags",
+      "Fwd Header Len",
+      "Bwd Header Len",
+      "Fwd Pkts/s",
+      "Bwd Pkts/s",
+      "Pkt Len Min",
+      "Pkt Len Max",
+      "Pkt Len Mean",
+      "Pkt Len Std",
+      "Pkt Len Var",
+      "FIN Flag Cnt",
+      "SYN Flag Cnt",
+      "RST Flag Cnt",
+      "PSH Flag Cnt",
+      "ACK Flag Cnt",
+      "URG Flag Cnt",
+      "CWE Flag Count",
+      "ECE Flag Cnt",
+      "Down/Up Ratio",
+      "Pkt Size Avg",
+      "Fwd Seg Size Avg",
+      "Bwd Seg Size Avg",
+      "Fwd Byts/b Avg",
+      "Fwd Pkts/b Avg",
+      "Fwd Blk Rate Avg",
+      "Bwd Byts/b Avg",
+      "Bwd Pkts/b Avg",
+      "Bwd Blk Rate Avg",
+      "Subflow Fwd Pkts",
+      "Subflow Fwd Byts",
+      "Subflow Bwd Pkts",
+      "Subflow Bwd Byts",
+      "Init Fwd Win Byts",
+      "Init Bwd Win Byts",
+      "Fwd Act Data Pkts",
+      "Fwd Seg Size Min",
+      "Active Mean",
+      "Active Std",
+      "Active Max",
+      "Active Min",
+      "Idle Mean",
+      "Idle Std",
+      "Idle Max",
+      "Idle Min"
+    ],
+    "persisted_trained_model_artifact_found": false,
+    "note": "Stage 5 artifacts contain configurations and evaluation outputs; no reusable trained RF artifact was found in the project tree."
+  },
+  "live_input": {
+    "contract": "src.sdn_defense.flow_records.FlowRecord",
+    "schema_version": 1,
+    "observation": "Ryu/OpenFlow flow-stat rule snapshots",
+    "fields": [
+      "duration_seconds",
+      "packet_count",
+      "byte_count",
+      "eth_type",
+      "ip_protocol",
+      "protocol",
+      "src_ip",
+      "dst_ip",
+      "src_mac",
+      "dst_mac",
+      "src_port",
+      "dst_port",
+      "in_port",
+      "tcp_flags",
+      "is_empty",
+      "match_raw",
+      "datapath_id",
+      "table_id",
+      "priority",
+      "cookie",
+      "observed_at",
+      "observation_source"
+    ],
+    "unit": "rule-stat snapshot, not CICFlowMeter flow row"
+  },
+  "classification_definitions": {
+    "EXACT": "same quantity and semantics are represented in live observations",
+    "DERIVABLE": "deterministically computable from current live observations without meaning change",
+    "APPROXIMATION_REQUIRED": "computable only by changing/approximating semantics; prohibited for live model input",
+    "UNAVAILABLE": "required source information is absent",
+    "SEMANTICALLY_INCOMPATIBLE": "an apparently related live field exists but measures a different quantity"
+  },
+  "feature_compatibility": [
+    {
+      "feature": "Protocol",
+      "status": "EXACT",
+      "live_fields": [
+        "ip_protocol"
+      ],
+      "reason": "FlowRecord.ip_protocol is the IP protocol number; it matches CICFlowMeter Protocol when the OpenFlow match contains ip_proto. The field is optional on wildcarded/non-IP entries, so an individual record may still be rejected for a missing value."
+    },
+    {
+      "feature": "Flow Duration",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "duration_seconds"
+      ],
+      "reason": "FlowRecord.duration_seconds is the age of an installed OpenFlow rule at the snapshot. CICFlowMeter Flow Duration describes the packet-derived bidirectional flow duration (reported in a different unit/semantic interval); converting seconds to microseconds would not make the underlying quantity equivalent."
+    },
+    {
+      "feature": "Tot Fwd Pkts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Tot Bwd Pkts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "TotLen Fwd Pkts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "TotLen Bwd Pkts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Pkt Len Max",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Pkt Len Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Pkt Len Mean",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Pkt Len Std",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Pkt Len Max",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Pkt Len Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Pkt Len Mean",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Pkt Len Std",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Flow Byts/s",
+      "status": "APPROXIMATION_REQUIRED",
+      "live_fields": [
+        "byte_count",
+        "duration_seconds"
+      ],
+      "reason": "A ratio of the cumulative OpenFlow rule counter to rule age could be calculated, but rule-age and CICFlowMeter packet-flow duration boundaries differ. The result would be an approximation with changed semantics and is prohibited for RF input."
+    },
+    {
+      "feature": "Flow Pkts/s",
+      "status": "APPROXIMATION_REQUIRED",
+      "live_fields": [
+        "packet_count",
+        "duration_seconds"
+      ],
+      "reason": "A ratio of the cumulative OpenFlow rule counter to rule age could be calculated, but rule-age and CICFlowMeter packet-flow duration boundaries differ. The result would be an approximation with changed semantics and is prohibited for RF input."
+    },
+    {
+      "feature": "Flow IAT Mean",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Flow IAT Std",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Flow IAT Max",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Flow IAT Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd IAT Tot",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd IAT Mean",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd IAT Std",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd IAT Max",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd IAT Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd IAT Tot",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd IAT Mean",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd IAT Std",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd IAT Max",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd IAT Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd PSH Flags",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "Bwd PSH Flags",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "Fwd URG Flags",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "Bwd URG Flags",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "Fwd Header Len",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Header Len",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Pkts/s",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Pkts/s",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Pkt Len Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Pkt Len Max",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Pkt Len Mean",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Pkt Len Std",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Pkt Len Var",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "FIN Flag Cnt",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "SYN Flag Cnt",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "RST Flag Cnt",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "PSH Flag Cnt",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "ACK Flag Cnt",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "URG Flag Cnt",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "CWE Flag Count",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "ECE Flag Cnt",
+      "status": "SEMANTICALLY_INCOMPATIBLE",
+      "live_fields": [
+        "tcp_flags"
+      ],
+      "reason": "FlowRecord.tcp_flags, when present, is an OpenFlow match selector, not packet-level counts or directional occurrences of this flag. It cannot reproduce the CICFlowMeter flag feature."
+    },
+    {
+      "feature": "Down/Up Ratio",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Pkt Size Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Seg Size Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Seg Size Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Byts/b Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Pkts/b Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Blk Rate Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Byts/b Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Pkts/b Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Bwd Blk Rate Avg",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Subflow Fwd Pkts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Subflow Fwd Byts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Subflow Bwd Pkts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Subflow Bwd Byts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Init Fwd Win Byts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Init Bwd Win Byts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Act Data Pkts",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Fwd Seg Size Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Active Mean",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Active Std",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Active Max",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Active Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Idle Mean",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Idle Std",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Idle Max",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    },
+    {
+      "feature": "Idle Min",
+      "status": "UNAVAILABLE",
+      "live_fields": [],
+      "reason": "The current FlowRecord has no packet-level bidirectional flow aggregation for this quantity. No value can be produced from current fields without introducing new telemetry or changing feature semantics."
+    }
+  ],
+  "summary": {
+    "EXACT": 1,
+    "DERIVABLE": 0,
+    "APPROXIMATION_REQUIRED": 2,
+    "UNAVAILABLE": 61,
+    "SEMANTICALLY_INCOMPATIBLE": 13
+  },
+  "inference_authorization": {
+    "live_rf_inference_defensible": false,
+    "blockers": "Any model feature not classified EXACT or DERIVABLE blocks inference; missing per-record values also block inference.",
+    "feature_fabrication_or_imputation_permitted": false
+  }
+}

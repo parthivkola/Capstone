@@ -1,0 +1,820 @@
+{
+  "artifact": "model.joblib",
+  "artifact_sha256": "c9aa0edaaddaba4e89f566b2c0e430b4a183459d6ad5fe54aea335ae8e2a8669",
+  "dataset_sha256": "d300855cac3c141be61d0301f9a0eb0c22fe6fc208aea7a67ad471f65e00b948",
+  "dependencies": {
+    "joblib": "1.6.0",
+    "scikit_learn": "1.9.1"
+  },
+  "explanation": {
+    "contribution_formula": "coef_i * ((feature_i - train_mean_i) / train_scale_i)",
+    "method": "standardized logistic-regression signed feature contributions",
+    "probability_calibration": "not evaluated; score is not a probability",
+    "reconciliation": "intercept + sum(contribution_i) equals decision_function score"
+  },
+  "feature_order": [
+    "rule_packet_delta",
+    "rule_byte_delta",
+    "rule_packet_rate_per_second",
+    "rule_byte_rate_per_second"
+  ],
+  "feature_schema_id": "stage7-live-rule-window-v1",
+  "held_out_test": {
+    "benign_false_positive_rate": 0.1,
+    "confusion_matrix": [
+      [
+        9,
+        1
+      ],
+      [
+        3,
+        8
+      ]
+    ],
+    "labels_order": [
+      "BENIGN",
+      "PORT_SCAN"
+    ],
+    "limitations": "One held-out run per class; results are uncertain and not approval evidence.",
+    "macro_f1": 0.8090909090909091,
+    "per_class": {
+      "BENIGN": {
+        "f1": 0.8181818181818182,
+        "precision": 0.75,
+        "recall": 0.9,
+        "support": 10
+      },
+      "PORT_SCAN": {
+        "f1": 0.8,
+        "precision": 0.8888888888888888,
+        "recall": 0.7272727272727273,
+        "support": 11
+      }
+    },
+    "per_run": {
+      "63d6e54e-ad08-45d4-88d5-ec77d870214b": {
+        "ground_truth": "PORT_SCAN",
+        "macro_f1": 0.42105263157894735,
+        "predictions": [
+          "BENIGN",
+          "PORT_SCAN",
+          "PORT_SCAN",
+          "PORT_SCAN",
+          "BENIGN",
+          "BENIGN",
+          "PORT_SCAN",
+          "PORT_SCAN",
+          "PORT_SCAN",
+          "PORT_SCAN",
+          "PORT_SCAN"
+        ],
+        "sample_count": 11,
+        "scores": [
+          -0.8718481949692559,
+          0.19087309278174497,
+          0.19087309278174497,
+          0.18821172159012903,
+          0.08589918972507174,
+          -0.18277476431569306,
+          0.22023267987739226,
+          0.22023267987739226,
+          0.21757024313981158,
+          0.11526755825835268,
+          0.14862080046037096
+        ]
+      },
+      "9ea13400-d029-45f4-a36f-158e75b9040d": {
+        "ground_truth": "BENIGN",
+        "macro_f1": 0.47368421052631576,
+        "predictions": [
+          "BENIGN",
+          "BENIGN",
+          "BENIGN",
+          "BENIGN",
+          "BENIGN",
+          "BENIGN",
+          "PORT_SCAN",
+          "BENIGN",
+          "BENIGN",
+          "BENIGN"
+        ],
+        "sample_count": 10,
+        "scores": [
+          -0.8422607641053587,
+          -0.03685039922819289,
+          -0.03685039922819289,
+          -0.224985088856008,
+          -0.036879718161121414,
+          -0.036879718161121414,
+          0.14861675456142287,
+          0.10624272254921674,
+          0.10624272254921674,
+          0.10624272254921674
+        ]
+      }
+    },
+    "port_scan_false_negative_rate": 0.2727272727272727,
+    "predictions": [
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": -1.2087500765452848,
+          "rule_byte_rate_per_second": -1.142997731187906,
+          "rule_packet_delta": 0.7335504466131094,
+          "rule_packet_rate_per_second": 0.7615192010384794
+        },
+        "decision_score": -0.8422607641053587,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 1078.0,
+          "rule_byte_rate_per_second": 608.5129467629448,
+          "rule_packet_delta": 13.0,
+          "rule_packet_rate_per_second": 7.338282289349056
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": -0.8422607641053584,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "755d7e5d8397de603f68692c6799024d963f90bb548ab8f597d1c95e32988e24",
+          "60569669bf2cd57072e297ed2175cd59ace2ab2a06bc81bb3aa3e2daca8882cc"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "ccb8609324d86759251470134615d0ba966c97b786c86547b30bacbd69932adc"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": 0.03358842987890267,
+          "rule_byte_rate_per_second": 0.03835638172993756,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.0620834029288509
+        },
+        "decision_score": -0.03685039922819289,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 196.0,
+          "rule_byte_rate_per_second": 97.42629890618151,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9941459072059339
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": -0.036850399228192894,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "e8a9c0975c69eeba1b3a1b8b160838a959f1989f38be43c994e9f4e3e3720e37",
+          "034ee3e61dcfd17be1fde9d43d801590bababf9fa6701fe8a0790373f89cfb5e"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "42db365b913f24fef36c96573706fa93fe1cbac754a4d06bdb43e07f3fc4d0d1"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": 0.03358842987890267,
+          "rule_byte_rate_per_second": 0.03835638172993756,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.0620834029288509
+        },
+        "decision_score": -0.03685039922819289,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 196.0,
+          "rule_byte_rate_per_second": 97.42629890618151,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9941459072059339
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": -0.036850399228192894,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "34a7a39e100d41d72ef59ad4c62c2b25df6bb5a5b4105b6ef92e9b347b8dc24c",
+          "fa6939a899b436c4f05aa557d8cdc4c28aebaa39557ccd9157d63416d0fc1ca2"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "78979f2f781afaa2f9aa7e760d76a7017ed7ed55e74067bc7a68ec811f2f53b6"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": -0.29601158202955524,
+          "rule_byte_rate_per_second": -0.2305007450712623,
+          "rule_packet_delta": 0.15560160988762928,
+          "rule_packet_rate_per_second": 0.13150823238093667
+        },
+        "decision_score": -0.224985088856008,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 430.0,
+          "rule_byte_rate_per_second": 213.7413700492758,
+          "rule_packet_delta": 5.0,
+          "rule_packet_rate_per_second": 2.4853647680148345
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": -0.22498508885600801,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "60569669bf2cd57072e297ed2175cd59ace2ab2a06bc81bb3aa3e2daca8882cc",
+          "413a9ae0597f7cf68c1bba545dc20c10f2652df9ca37bb66ebc23b1311d3b4d2"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "3b38d632612f39b7dbd4bda337e074185e95109241e872f7b587d526c9781d13"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": 0.03358842987890267,
+          "rule_byte_rate_per_second": 0.038287702369992786,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.06204404250183466
+        },
+        "decision_score": -0.036879718161121414,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 196.0,
+          "rule_byte_rate_per_second": 97.45601150756606,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9944490970159802
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": -0.03687971816112142,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "034ee3e61dcfd17be1fde9d43d801590bababf9fa6701fe8a0790373f89cfb5e",
+          "21bf8ac949e6d1d7acfbf0d33a68d1a47a09ac8f9766f9fa7b467f4b2cd777eb"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "fa51c63f38c6f69deca22556ec634ed3cbd14374acbf487f8e2826d10aa52446"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": 0.03358842987890267,
+          "rule_byte_rate_per_second": 0.038287702369992786,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.06204404250183466
+        },
+        "decision_score": -0.036879718161121414,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 196.0,
+          "rule_byte_rate_per_second": 97.45601150756606,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9944490970159802
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": -0.03687971816112142,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "fa6939a899b436c4f05aa557d8cdc4c28aebaa39557ccd9157d63416d0fc1ca2",
+          "bec821a6ee0995fd4238ae654c4ebc70df58142944b8472c2ba5649580faf50e"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "466d55363799d361f8c46f1676c7fd1a4a300aefe913c02a9018125cba05c248"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": 0.21106535936807228,
+          "rule_byte_rate_per_second": 0.18310107551082314,
+          "rule_packet_delta": -0.13337280847511082,
+          "rule_packet_rate_per_second": -0.1265942678186053
+        },
+        "decision_score": 0.14861675456142287,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 70.0,
+          "rule_byte_rate_per_second": 34.80571839555931,
+          "rule_packet_delta": 1.0,
+          "rule_packet_rate_per_second": 0.4972245485079901
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.14861675456142287,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "413a9ae0597f7cf68c1bba545dc20c10f2652df9ca37bb66ebc23b1311d3b4d2",
+          "2c26cf7f36d85672c9a7551487044e1833117b1cbc7291b3e36e89ce95a14620"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "2337e7b971e82d0b5fb32cecbd028694df41aa92b299456082ac9513e89454f1"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": 0.1124670652074225,
+          "rule_byte_rate_per_second": 0.10205374843568327,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.061566283185706804
+        },
+        "decision_score": 0.10624272254921674,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 140.0,
+          "rule_byte_rate_per_second": 69.86904636779163,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9981292338255946
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": 0.10624272254921674,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "21bf8ac949e6d1d7acfbf0d33a68d1a47a09ac8f9766f9fa7b467f4b2cd777eb",
+          "d05ed03ec9b282f740f0031b0f7828597de3d8edb11b8d508170a44d0972ed8b"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "a3d58fa61c6eab053f4a23d171361af4981aa45181f1fdacfb16671a29ad6154"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": 0.1124670652074225,
+          "rule_byte_rate_per_second": 0.10205374843568327,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.061566283185706804
+        },
+        "decision_score": 0.10624272254921674,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 140.0,
+          "rule_byte_rate_per_second": 69.86904636779163,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9981292338255946
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": 0.10624272254921674,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "bec821a6ee0995fd4238ae654c4ebc70df58142944b8472c2ba5649580faf50e",
+          "7e684781084a8e9909f7d334d21d282bdc837c26d192bd46f11872898e52d18e"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "5ab958da26a3a3becaf421c6c003cedc40c7821dc39434f7b793341b9307b4a3"
+      },
+      {
+        "actual_label": "BENIGN",
+        "contributions": {
+          "rule_byte_delta": 0.1124670652074225,
+          "rule_byte_rate_per_second": 0.10205374843568327,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.061566283185706804
+        },
+        "decision_score": 0.10624272254921674,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 140.0,
+          "rule_byte_rate_per_second": 69.86904636779163,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9981292338255946
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": 0.10624272254921674,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+        "source_record_ids": [
+          "2c26cf7f36d85672c9a7551487044e1833117b1cbc7291b3e36e89ce95a14620",
+          "ab987e666afd70a5152e623925b016df5fff8efc23aa831e07523262a52a9fc9"
+        ],
+        "source_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "ed6183bab38d85f435c93769de0e5c308422590df336d580fb2809c1f8a6c6e4"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": -1.5468013708103698,
+          "rule_byte_rate_per_second": -1.312775833074912,
+          "rule_packet_delta": 1.0225248649758496,
+          "rule_packet_rate_per_second": 0.9507867479639327
+        },
+        "decision_score": -0.8718481949692559,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 1318.0,
+          "rule_byte_rate_per_second": 681.9636759084981,
+          "rule_packet_delta": 17.0,
+          "rule_packet_rate_per_second": 8.79619308834937
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": -0.8718481949692559,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "fdae4fd11ef8c8b3ba9cf5fe3b6065296bd0ca89929425b11f933e3e40e2b6cc",
+          "125069fd85ef243d8b60bee256ac4e8b4c3d83016bf294b18631cfb9a8f52915"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "438f7a4a5ce0e4ae1b41c9ba90179eaf0414271a5edf3f82aa2a30f03f92e520"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.30966365352872205,
+          "rule_byte_rate_per_second": 0.2635529494779511,
+          "rule_packet_delta": -0.20561641306579587,
+          "rule_packet_rate_per_second": -0.19114449313537596
+        },
+        "decision_score": 0.19087309278174497,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 0.0,
+          "rule_byte_rate_per_second": 0.0,
+          "rule_packet_delta": 0.0,
+          "rule_packet_rate_per_second": 0.0
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.1908730927817449,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "1a48c3ffad118c01b66c13c79b887f3a5fea386f59362bd3f242f37bf2a17813",
+          "fbe740ae19e411a4978378416ea5a687e7ecd3048bf89ca79de0b6d9a88888b6"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "c9be766d68c8ba91c1be0fa2ff7ed54ffc95100e3629d576f5507604289acbf2"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.30966365352872205,
+          "rule_byte_rate_per_second": 0.2635529494779511,
+          "rule_packet_delta": -0.20561641306579587,
+          "rule_packet_rate_per_second": -0.19114449313537596
+        },
+        "decision_score": 0.19087309278174497,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 0.0,
+          "rule_byte_rate_per_second": 0.0,
+          "rule_packet_delta": 0.0,
+          "rule_packet_rate_per_second": 0.0
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.1908730927817449,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "ff9e3d68d41f659885a7f981a60257b7922d9679db7f746b76046f37ae96db56",
+          "f3c11b5887c75395fd1761541a9a598de4d77114f074212af14afa0e612ad870"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "6596447d9c93a20ecf9fc82013567067708d322a3bcc1015bb511ddb2a0f405a"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.1575405711094338,
+          "rule_byte_rate_per_second": 0.13943219586158473,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.062049237472707304
+        },
+        "decision_score": 0.18821172159012903,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 108.0,
+          "rule_byte_rate_per_second": 53.69809035375624,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9944090806251157
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.18821172159012903,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "5a85b956530a0bac7b279d4d2f2761930615005b31383e6670e7a2c8a58bb04c",
+          "3d130d4a3534d994c6833392896c204ffbd80541f389bc0ac54f61017fcddc24"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "52f3edbebd7f5e0aee190061b83fb8bdbb5453eb9d091a480ea06fa7aa28cfc4"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.10119868873191966,
+          "rule_byte_rate_per_second": 0.09346154637404161,
+          "rule_packet_delta": -0.0611292038844258,
+          "rule_packet_rate_per_second": -0.062049237472707304
+        },
+        "decision_score": 0.08589918972507174,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 148.0,
+          "rule_byte_rate_per_second": 73.58627196625856,
+          "rule_packet_delta": 2.0,
+          "rule_packet_rate_per_second": 0.9944090806251157
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": 0.08589918972507174,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "35fe4143c4c75727a2dbbce2c88d0af4c1e65cbe7b236d93ae53929961ace29c",
+          "ac7dd366f824bff6655ec05b510297e8504c574615370ff9f56b953eca7d90c2"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "6dd4a1d50f8ed4486c38dfc5a59181e9080a6aef2a71df631d31e88f5409cf97"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": -0.1974132878689054,
+          "rule_byte_rate_per_second": -0.15018289590993683,
+          "rule_packet_delta": 0.08335800529694426,
+          "rule_packet_rate_per_second": 0.06704601818996136
+        },
+        "decision_score": -0.18277476431569306,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 360.0,
+          "rule_byte_rate_per_second": 178.99363451252083,
+          "rule_packet_delta": 4.0,
+          "rule_packet_rate_per_second": 1.9888181612502314
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "BENIGN",
+        "reconstructed_decision_score": -0.18277476431569303,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "125069fd85ef243d8b60bee256ac4e8b4c3d83016bf294b18631cfb9a8f52915",
+          "da866eeaaea1399405ba71ff0756bc925d45b41fbd15ac6373f1ff8c1410b5d1"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "08f794512dd3a19ae906d98cf86e393baecfaf58ad71e7a2d8dd7fe850dfc0ca"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.2505046770323322,
+          "rule_byte_rate_per_second": 0.21529410684880915,
+          "rule_packet_delta": -0.13337280847511082,
+          "rule_packet_rate_per_second": -0.12661069150488186
+        },
+        "decision_score": 0.22023267987739226,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 42.0,
+          "rule_byte_rate_per_second": 20.878117610185612,
+          "rule_packet_delta": 1.0,
+          "rule_packet_rate_per_second": 0.4970980383377527
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.22023267987739226,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "fbe740ae19e411a4978378416ea5a687e7ecd3048bf89ca79de0b6d9a88888b6",
+          "7f521d6a4d7ebd456f6d7c829d0e4a5376f03c0d1757d700bca18acfad7740ec"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "d57cd41361b221033c9ae1cafeb81966087625bf78b2a824587a0d45808b7217"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.2505046770323322,
+          "rule_byte_rate_per_second": 0.21529410684880915,
+          "rule_packet_delta": -0.13337280847511082,
+          "rule_packet_rate_per_second": -0.12661069150488186
+        },
+        "decision_score": 0.22023267987739226,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 42.0,
+          "rule_byte_rate_per_second": 20.878117610185612,
+          "rule_packet_delta": 1.0,
+          "rule_packet_rate_per_second": 0.4970980383377527
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.22023267987739226,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "f3c11b5887c75395fd1761541a9a598de4d77114f074212af14afa0e612ad870",
+          "d1901ac82692da64119593a31e02b0a3a92929064644d5856a0e894452a5b9db"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "06e29d81b3755254389fa27229cf36eaa6aec681a6a6ba602466174c688ff67c"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.09838159461304395,
+          "rule_byte_rate_per_second": 0.09119994008815839,
+          "rule_packet_delta": 0.011114400706259226,
+          "rule_packet_rate_per_second": 0.0024569117561064123
+        },
+        "decision_score": 0.21757024313981158,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 150.0,
+          "rule_byte_rate_per_second": 74.56470575066291,
+          "rule_packet_delta": 3.0,
+          "rule_packet_rate_per_second": 1.4912941150132581
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.21757024313981155,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "3d130d4a3534d994c6833392896c204ffbd80541f389bc0ac54f61017fcddc24",
+          "d0a3cd92271056ba1f35eb27f0859cb0129fd98f52e378c3981a63a50a0e4d6c"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "92ae7f9b22d06d29919bd877c93a20e84c773c94f7efb1e95f500075285ee67a"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.04203971223552979,
+          "rule_byte_rate_per_second": 0.04523913758421366,
+          "rule_packet_delta": 0.011114400706259226,
+          "rule_packet_rate_per_second": 0.0024569117561064123
+        },
+        "decision_score": 0.11526755825835268,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 190.0,
+          "rule_byte_rate_per_second": 94.44862728417301,
+          "rule_packet_delta": 3.0,
+          "rule_packet_rate_per_second": 1.4912941150132581
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.11526755825835268,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "ac7dd366f824bff6655ec05b510297e8504c574615370ff9f56b953eca7d90c2",
+          "326cb5c8d24d840ab81a1bdad8a4530c129c778a0baccc4efeca7cb5d9f16fe3"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "94a2ef0dabe153cbbad955e3c7e544454d96c3c0c7126588e6a1a808bf38e658"
+      },
+      {
+        "actual_label": "PORT_SCAN",
+        "contributions": {
+          "rule_byte_delta": 0.21106535936807228,
+          "rule_byte_rate_per_second": 0.18312154509604783,
+          "rule_packet_delta": -0.13337280847511082,
+          "rule_packet_rate_per_second": -0.12661069150488186
+        },
+        "decision_score": 0.14862080046037096,
+        "explanation_method": "standardized-logistic-contributions-v1",
+        "features": {
+          "rule_byte_delta": 70.0,
+          "rule_byte_rate_per_second": 34.796862683642686,
+          "rule_packet_delta": 1.0,
+          "rule_packet_rate_per_second": 0.4970980383377527
+        },
+        "intercept": 0.014417395976243584,
+        "predicted_label": "PORT_SCAN",
+        "reconstructed_decision_score": 0.14862080046037102,
+        "run_id": "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+        "source_artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+        "source_record_ids": [
+          "da866eeaaea1399405ba71ff0756bc925d45b41fbd15ac6373f1ff8c1410b5d1",
+          "ca02d77a1e3cef6a4e13cd020132924431346ff03ca69f801b88c05a5c3dd519"
+        ],
+        "source_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889",
+        "source_type": "LIVE",
+        "threshold": 0.11526463405656867,
+        "window_id": "315bc66a69cf16c1f109992c67f166229648e72781508563ef4392fab4746b89"
+      }
+    ]
+  },
+  "limitations": [
+    "Three independent runs per scenario; each split has one run per class.",
+    "The test set represents one benign run and one port-scan run only.",
+    "This model is deliberately not approved for live operation.",
+    "A positive class means the controlled port-scan workload, not arbitrary intrusion."
+  ],
+  "live_approved": false,
+  "model_file_trusted_local_only": true,
+  "model_id": "stage7-live-logistic-preliminary",
+  "model_version": "0.1.0",
+  "preprocessing": {
+    "feature_order": [
+      "rule_packet_delta",
+      "rule_byte_delta",
+      "rule_packet_rate_per_second",
+      "rule_byte_rate_per_second"
+    ],
+    "fit_split": "train only",
+    "method": "StandardScaler"
+  },
+  "run_counts_by_split": {
+    "test": 2,
+    "train": 2,
+    "validation": 2
+  },
+  "run_ids_by_split": {
+    "test": [
+      "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+      "9ea13400-d029-45f4-a36f-158e75b9040d"
+    ],
+    "train": [
+      "97fdb34e-fc9a-4d8f-a22a-a736a839bf1d",
+      "d2feb135-8e5a-4f96-994b-77c0775f68a7"
+    ],
+    "validation": [
+      "18b62b45-083e-40be-83eb-5eded9c92428",
+      "e2d4c76b-01ab-457e-9936-9e746172c943"
+    ]
+  },
+  "sample_counts_by_split": {
+    "test": {
+      "BENIGN": 10,
+      "PORT_SCAN": 11
+    },
+    "train": {
+      "BENIGN": 10,
+      "PORT_SCAN": 16
+    },
+    "validation": {
+      "BENIGN": 10,
+      "PORT_SCAN": 16
+    }
+  },
+  "schema_version": 1,
+  "status": "TRAINED_UNAPPROVED_PRELIMINARY",
+  "task": "controlled benign-connectivity versus bounded port-scan scenario classification",
+  "threshold": 0.11526463405656867,
+  "threshold_selection": {
+    "fallback": "highest validation decision score if no candidate meets the constraint",
+    "maximum_benign_false_positive_rate": 0.1,
+    "objective": "maximize port-scan recall subject to a benign false-positive rate constraint",
+    "score_semantics": "logistic decision function; not a calibrated probability",
+    "split": "validation"
+  },
+  "training_data_manifest": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-live-evaluation/live-2026-10-28-initial-run-split-02/manifest.json",
+  "training_data_manifest_sha256": "c45e946445c0aa9b6fd093f5d504ec9c8af2b98eb62be2d55ffed6511e91bd3d",
+  "training_run_ids": [
+    "97fdb34e-fc9a-4d8f-a22a-a736a839bf1d",
+    "d2feb135-8e5a-4f96-994b-77c0775f68a7"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "sentinel-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "check": "tsc --noEmit",
+    "test": "node --test --test-concurrency=1 src/api.test.mjs src/pages.test.mjs src/hooks/useSentinelData.test.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "6.1.2",
+    "lucide-react": "0.468.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "vite": "8.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "react-test-renderer": "^19.2.0",
+    "typescript": "6.0.3"
+  }
+}

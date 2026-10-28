@@ -1,0 +1,215 @@
+{
+  "class_counts": {
+    "BENIGN": 30,
+    "PORT_SCAN": 43
+  },
+  "csv_sha256": "6787511dad368c2e416b01bba0303ff0d76999048e8b89e244ab375b0660c160",
+  "dataset_id": "live-2026-10-28-initial-run-split-02",
+  "feature_order": [
+    "rule_packet_delta",
+    "rule_byte_delta",
+    "rule_packet_rate_per_second",
+    "rule_byte_rate_per_second"
+  ],
+  "feature_schema_id": "stage7-live-rule-window-v1",
+  "input_artifacts": {
+    "18b62b45-083e-40be-83eb-5eded9c92428": {
+      "collection_summary_sha256": "1b835dcee70c6a1e2dc51452cb4568d5fbdd8e5bc6d5b050683a29e7f05046c9",
+      "journal_sha256": "6864ade5daf00f5b84ef34cbe276ad573fe9bbe746fbbf61072df462ea53be78",
+      "run_manifest_sha256": "3cf4ef50de05dd846506e8763b0279a8a9e613de04d7c6db9861e3bc655c2b58",
+      "scenario": "controlled-connectivity-observation",
+      "telemetry_sha256": "8e713df1b8267e83e19d8f55db9e82ca6dfda9674654e325c0cda5142c5d4564"
+    },
+    "63d6e54e-ad08-45d4-88d5-ec77d870214b": {
+      "collection_summary_sha256": "72555bf8e1d38664ecefd1b0c4c2cdcee0dedd7b4c332b1c799555ff671b3492",
+      "journal_sha256": "223342e1e6c066061f16234163e89e790dcda77b0e1f9bbb1c4e45e4f9efade3",
+      "process_evidence_sha256": "f3433d012ad8991f58c3e1f80c636d184f1b184c397701b06f81b07616d89607",
+      "run_manifest_sha256": "6e4292f064ac0781e71936e6bb03d60f96226b5e0d31d09c3b1e77ad311c5d86",
+      "scenario": "port-scan",
+      "telemetry_sha256": "06aae6b8b3daa2c36f91ded7344711fd8a9cc66f971e3c0d4aa30b720ba33889"
+    },
+    "97fdb34e-fc9a-4d8f-a22a-a736a839bf1d": {
+      "collection_summary_sha256": "1b835dcee70c6a1e2dc51452cb4568d5fbdd8e5bc6d5b050683a29e7f05046c9",
+      "journal_sha256": "243edee7fd6368c487576d1119edbb2180b080149cf5310f4dbe6c2435a77dfc",
+      "process_evidence_sha256": "c44870082caf260bdc16559cf61b43ea87c331154b1b212497ab1bdeaeae234a",
+      "run_manifest_sha256": "3cf4ef50de05dd846506e8763b0279a8a9e613de04d7c6db9861e3bc655c2b58",
+      "scenario": "port-scan",
+      "telemetry_sha256": "abd47ad55c715dec37483b4e423ef628e434809b464daa702b142ef048c64e1a"
+    },
+    "9ea13400-d029-45f4-a36f-158e75b9040d": {
+      "collection_summary_sha256": "72555bf8e1d38664ecefd1b0c4c2cdcee0dedd7b4c332b1c799555ff671b3492",
+      "journal_sha256": "378f4fd67cf1879ebf820f4652c3d20229139535983cc67ed49af5f5b824d2a7",
+      "run_manifest_sha256": "6e4292f064ac0781e71936e6bb03d60f96226b5e0d31d09c3b1e77ad311c5d86",
+      "scenario": "controlled-connectivity-observation",
+      "telemetry_sha256": "fc089f37c481baa40f4fbc072b768c957a729877b99769d6c98732d1b1aee8a4"
+    },
+    "d2feb135-8e5a-4f96-994b-77c0775f68a7": {
+      "collection_summary_sha256": "6d2f45338bee834da6e044c4da79b7845a91382d3c502383aa881d46025a14bb",
+      "journal_sha256": "f7efcbcc4a2fb39f911b2e9a1f8dbd12b0f2e8e85561193348ab25472861a5c2",
+      "run_manifest_sha256": "58691f8de20c5a21cf23ab52a7d975e43dd70121ab1fb82f3082341fe638a010",
+      "scenario": "controlled-connectivity-observation",
+      "telemetry_sha256": "085b8625b52e218a44504b8d0d56b8e08360965250c30dd67c857d2675e89315"
+    },
+    "e2d4c76b-01ab-457e-9936-9e746172c943": {
+      "collection_summary_sha256": "6d2f45338bee834da6e044c4da79b7845a91382d3c502383aa881d46025a14bb",
+      "journal_sha256": "2b0501427254a78a37edbb6edc8537fbd602a559e34e49f4b3cf91ae75cfb07d",
+      "process_evidence_sha256": "0fc430e9774e3064e7805457efc54e0e50e40be2fc811edf09a61cc449318171",
+      "run_manifest_sha256": "58691f8de20c5a21cf23ab52a7d975e43dd70121ab1fb82f3082341fe638a010",
+      "scenario": "port-scan",
+      "telemetry_sha256": "3c5292468ec56e31e48ab09f50d326b9401dbca03d2fdab91a6a1f56da9e2726"
+    }
+  },
+  "label_origin": "collector-verified scenario run journal; never model output",
+  "limitations": [
+    "Only controlled benign connectivity and bounded port-scan scenarios are represented.",
+    "Windows within a run are correlated; independent unit is the run.",
+    "The three runs per scenario support only a preliminary one-run-per-split evaluation.",
+    "Port-scan labels describe the orchestrated workload, not arbitrary attack identity."
+  ],
+  "rows_sha256": "d300855cac3c141be61d0301f9a0eb0c22fe6fc208aea7a67ad471f65e00b948",
+  "run_metadata": {
+    "18b62b45-083e-40be-83eb-5eded9c92428": {
+      "artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-09/telemetry-controlled-connectivity-observation.jsonl",
+      "collection_id": "fd116736-2fe0-485b-9c60-010a911e69cc",
+      "eligible_windows": 10,
+      "label": "BENIGN",
+      "scenario": "controlled-connectivity-observation",
+      "scenario_evidence": {
+        "completed": true,
+        "run_id": "18b62b45-083e-40be-83eb-5eded9c92428",
+        "scenario_id": "controlled-connectivity-observation"
+      }
+    },
+    "63d6e54e-ad08-45d4-88d5-ec77d870214b": {
+      "artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-port-scan.jsonl",
+      "collection_id": "4dfc3501-1e6c-4850-b465-f66e11749e90",
+      "eligible_windows": 11,
+      "label": "PORT_SCAN",
+      "scenario": "port-scan",
+      "scenario_evidence": {
+        "process_argv": [
+          "/usr/bin/python3",
+          "-m",
+          "networking.mininet.stage3_scenarios",
+          "port-scan",
+          "--duration",
+          "8",
+          "--rate",
+          "1",
+          "--run-id",
+          "63d6e54e-ad08-45d4-88d5-ec77d870214b",
+          "--log-file",
+          "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/port-scan-run.jsonl"
+        ],
+        "process_evidence_sha256": "f3433d012ad8991f58c3e1f80c636d184f1b184c397701b06f81b07616d89607",
+        "process_pid": 232485,
+        "process_return_code": 0,
+        "process_timed_out": false,
+        "scenario_id": "port-scan",
+        "target": "10.0.0.3"
+      }
+    },
+    "97fdb34e-fc9a-4d8f-a22a-a736a839bf1d": {
+      "artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-09/telemetry-port-scan.jsonl",
+      "collection_id": "fd116736-2fe0-485b-9c60-010a911e69cc",
+      "eligible_windows": 16,
+      "label": "PORT_SCAN",
+      "scenario": "port-scan",
+      "scenario_evidence": {
+        "process_argv": [
+          "/usr/bin/python3",
+          "-m",
+          "networking.mininet.stage3_scenarios",
+          "port-scan",
+          "--duration",
+          "8",
+          "--rate",
+          "1",
+          "--run-id",
+          "97fdb34e-fc9a-4d8f-a22a-a736a839bf1d",
+          "--log-file",
+          "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-09/port-scan-run.jsonl"
+        ],
+        "process_evidence_sha256": "c44870082caf260bdc16559cf61b43ea87c331154b1b212497ab1bdeaeae234a",
+        "process_pid": 233509,
+        "process_return_code": 0,
+        "process_timed_out": false,
+        "scenario_id": "port-scan",
+        "target": "10.0.0.3"
+      }
+    },
+    "9ea13400-d029-45f4-a36f-158e75b9040d": {
+      "artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-07/telemetry-controlled-connectivity-observation.jsonl",
+      "collection_id": "4dfc3501-1e6c-4850-b465-f66e11749e90",
+      "eligible_windows": 10,
+      "label": "BENIGN",
+      "scenario": "controlled-connectivity-observation",
+      "scenario_evidence": {
+        "completed": true,
+        "run_id": "9ea13400-d029-45f4-a36f-158e75b9040d",
+        "scenario_id": "controlled-connectivity-observation"
+      }
+    },
+    "d2feb135-8e5a-4f96-994b-77c0775f68a7": {
+      "artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-08/telemetry-controlled-connectivity-observation.jsonl",
+      "collection_id": "98eec679-6bdc-4a27-91d6-a57caca21fd5",
+      "eligible_windows": 10,
+      "label": "BENIGN",
+      "scenario": "controlled-connectivity-observation",
+      "scenario_evidence": {
+        "completed": true,
+        "run_id": "d2feb135-8e5a-4f96-994b-77c0775f68a7",
+        "scenario_id": "controlled-connectivity-observation"
+      }
+    },
+    "e2d4c76b-01ab-457e-9936-9e746172c943": {
+      "artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-08/telemetry-port-scan.jsonl",
+      "collection_id": "98eec679-6bdc-4a27-91d6-a57caca21fd5",
+      "eligible_windows": 16,
+      "label": "PORT_SCAN",
+      "scenario": "port-scan",
+      "scenario_evidence": {
+        "process_argv": [
+          "/usr/bin/python3",
+          "-m",
+          "networking.mininet.stage3_scenarios",
+          "port-scan",
+          "--duration",
+          "8",
+          "--rate",
+          "1",
+          "--run-id",
+          "e2d4c76b-01ab-457e-9936-9e746172c943",
+          "--log-file",
+          "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-bounded-scan-08/port-scan-run.jsonl"
+        ],
+        "process_evidence_sha256": "0fc430e9774e3064e7805457efc54e0e50e40be2fc811edf09a61cc449318171",
+        "process_pid": 232925,
+        "process_return_code": 0,
+        "process_timed_out": false,
+        "scenario_id": "port-scan",
+        "target": "10.0.0.3"
+      }
+    }
+  },
+  "run_sample_counts": {
+    "18b62b45-083e-40be-83eb-5eded9c92428": 10,
+    "63d6e54e-ad08-45d4-88d5-ec77d870214b": 11,
+    "97fdb34e-fc9a-4d8f-a22a-a736a839bf1d": 16,
+    "9ea13400-d029-45f4-a36f-158e75b9040d": 10,
+    "d2feb135-8e5a-4f96-994b-77c0775f68a7": 10,
+    "e2d4c76b-01ab-457e-9936-9e746172c943": 16
+  },
+  "run_splits": {
+    "18b62b45-083e-40be-83eb-5eded9c92428": "validation",
+    "63d6e54e-ad08-45d4-88d5-ec77d870214b": "test",
+    "97fdb34e-fc9a-4d8f-a22a-a736a839bf1d": "train",
+    "9ea13400-d029-45f4-a36f-158e75b9040d": "test",
+    "d2feb135-8e5a-4f96-994b-77c0775f68a7": "train",
+    "e2d4c76b-01ab-457e-9936-9e746172c943": "validation"
+  },
+  "schema_version": 1,
+  "source_type": "LIVE",
+  "split_method": "complete run IDs assigned to train/validation/test in deterministic SHA-256 order",
+  "window_count": 73
+}

@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "explainable-adaptive-sdn-defense"
+version = "0.1.0"
+description = "Stage 1 foundation for an explainable adaptive SDN network defense research project"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "Capstone Team" },
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "mypy>=1.10",
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+ml = [
+  "scikit-learn>=1.5,<2",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+  "apps*",
+  "services*",
+  "ml*",
+  "hardware*",
+  "networking*",
+  "src*",
+]
+namespaces = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
+xfail_strict = true
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = [".venv", "build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["apps", "services", "ml", "hardware", "networking", "src"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src", "apps", "services", "ml", "hardware", "networking", "tests"]
+strict = true
+warn_unused_configs = true
+exclude = ['^build/', '^dist/', '^\.venv/']
+
+[[tool.mypy.overrides]]
+module = ["mininet.*", "ryu.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["sklearn.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["joblib.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+  "networking.mininet.stage2_topology",
+  "networking.ryu.stage2_controller",
+  "networking.ryu.stage7_gateway",
+]
+disable_error_code = ["misc", "untyped-decorator"]

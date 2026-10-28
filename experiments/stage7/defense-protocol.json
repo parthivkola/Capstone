@@ -1,0 +1,120 @@
+{
+  "protocol_id": "stage7-safe-autonomous-sdn-defense-v1",
+  "stage": "7-PROTOCOL",
+  "status": "frozen_protocol_design_implementation_not_started",
+  "research_question": "Can an SDN defense system safely translate uncertain detection results into proportionate, explainable, and reversible mitigation actions while adapting to changes in its learned environment?",
+  "terminology": "source/distribution shift; no concept-drift claim",
+  "stage6": {
+    "graphsage": "deferred",
+    "graph_construction": "not scientifically supported by current benchmark/runtime contracts"
+  },
+  "read_only_capabilities": {
+    "offline_rf_confidence": true,
+    "offline_novelty_results": true,
+    "offline_psi_source_window_state": true,
+    "live_detector_result": false,
+    "live_per_flow_model_feature_parity": false,
+    "live_alert_persistence_tracker": false,
+    "live_risk_engine": false,
+    "openflow_mitigation_adapter": false,
+    "typed_action_expiry_and_rollback_contract": "DecisionRecord expiry and MitigationPort apply/rollback interfaces only",
+    "flow_identity": "optional FlowRecord match fields; incomplete identity must fail closed",
+    "asset_importance": "unavailable; fixed Mininet protected-flow config only"
+  },
+  "result_separation": {
+    "detection_states": ["BENIGN", "ATTACK", "UNKNOWN"],
+    "policy_abstention_state": "UNCERTAIN",
+    "risk_states": ["LOW", "MEDIUM", "HIGH", "VERY_HIGH"],
+    "actions": ["MONITOR", "RATE_LIMIT", "QUARANTINE", "BLOCK"],
+    "detector_may_execute_action": false,
+    "shift_alone_may_escalate_risk": false
+  },
+  "threshold_calibration": {
+    "data": "disjoint validation/calibration partition only",
+    "score": "binary RF p_attack; score definition and model ID recorded",
+    "score_group_ties": "indivisible; choose the lowest threshold meeting the benign action-rate upper bound",
+    "benign_action_rate_upper_bounds": {
+      "RATE_LIMIT": 0.05,
+      "QUARANTINE": 0.01,
+      "BLOCK": 0.001
+    },
+    "unattainable_operating_point": "use conservative no-action boundary and report unattainable",
+    "freeze_before_final_test": true,
+    "test_data_may_select_threshold": false
+  },
+  "risk_policy": {
+    "LOW": "BENIGN, below tau_rate, shift alone, or missing/stale/unscoped evidence -> MONITOR",
+    "MEDIUM": "attack score >= tau_rate without HIGH evidence, or repeated scoped UNKNOWN/UNCERTAIN -> RATE_LIMIT if verified else MONITOR",
+    "HIGH": "attack score >= tau_quarantine plus independent corroborator, or >= tau_block without VERY_HIGH evidence -> QUARANTINE if exact scope supported else MONITOR",
+    "VERY_HIGH": "attack score >= tau_block plus same-scope persistence in >=2 consecutive 2-second observations and independent corroboration, no protected-flow match -> exact-scope BLOCK",
+    "uncertain_maximum": "MEDIUM; RATE_LIMIT only with repeated scoped evidence; otherwise MONITOR",
+    "novelty_alone_maximum": "MEDIUM",
+    "psi_alone_action": "MONITOR; PSI may enter adaptation gate only",
+    "protected_flow": "h1<->h3 is never disrupted; matching protected flow forces MONITOR",
+    "missing_exact_action_scope": "MONITOR"
+  },
+  "policies": {
+    "A_always_block": "ATTACK -> immediate exact-scope BLOCK; all other states MONITOR; fixed TTL applies",
+    "B_confidence": "below tau_rate MONITOR; tau_rate..tau_quarantine RATE_LIMIT; tau_quarantine..tau_block QUARANTINE; >=tau_block BLOCK; no numeric attack score -> MONITOR",
+    "C_risk_aware": "frozen risk_policy; fixed TTL and expiry; no extension",
+    "D_risk_aware_reversible": "same risk decision as C plus midpoint re-evaluation, immediate rollback on changed/stale evidence, at most one conditional extension"
+  },
+  "mitigation_lifecycle": {
+    "ttl_seconds": {
+      "RATE_LIMIT": 30,
+      "QUARANTINE": 15,
+      "BLOCK": 10
+    },
+    "reevaluation_fraction_of_ttl": 0.5,
+    "maximum_extensions": 1,
+    "maximum_total_duration_multiplier": 2,
+    "evidence_stale_after_seconds": 5,
+    "extension_requires": ["same exact flow", "still ATTACK at frozen tier", "fresh independent corroboration", "not protected flow", "adapter confirms active exact rule"],
+    "rollback_on": ["BENIGN", "UNCERTAIN", "UNKNOWN", "stale/missing evidence", "identity mismatch", "protected-flow match", "scenario completion", "TTL expiry"],
+    "install_failure": "log/alert; no escalation or scope broadening",
+    "rollback_failure": "one exact-cookie delete retry, log/alert, stop scenario, clean Mininet; never flush unrelated flows",
+    "rate_limit_prerequisite": "verify OVS meter support and exact meter removal; otherwise MONITOR"
+  },
+  "adaptation_gate": {
+    "shift_signal": "frozen Stage 5F PSI >=0.20 on >=5/77 features; source/window level only",
+    "psi_alone_authorizes_update": false,
+    "behavior_evidence": "after one-window label release: macro F1 decline >0.05 or benign FPR increase >0.02 versus initial validation, OR validation-calibrated UNKNOWN/UNCERTAIN rate control-limit breach",
+    "label_delay": "one window; current-window labels cannot trigger or fit; W4 labels evaluation-only",
+    "buffer_max_rows": 100000,
+    "sealed_anchor_used_for_fit": false,
+    "candidate_rollback": "reject if anchor macro F1 declines >0.05 or anchor benign FPR increases >0.02 versus initial model",
+    "candidate_promotion": "requires held-out matured-data validation objective improvement under frozen benign-FPR constraint and anchor pass",
+    "decision_states": ["HOLD", "UPDATE"],
+    "separate_stages": ["shift detection", "adaptation decision", "candidate fit", "candidate validation", "promotion or rollback"]
+  },
+  "evaluation": {
+    "offline": "new Stage 7 replay of frozen Stage 5D CSE-SFH-A/B memberships and RF config; output only under experiments/stage7; recompute row-level scores; same rows/seeds across policies",
+    "offline_does_not_measure": ["attack containment", "mitigation latency", "live SDN effectiveness"],
+    "mininet": "only after feature-parity and flow-correlation gate; until then adapter lifecycle safety only, with explicit test decisions",
+    "scenario_repetitions": 5,
+    "policy_order_seed": 2026,
+    "scenarios": ["arp-spoof", "dhcp-starvation", "port-scan", "syn-flood", "rogue-device", "dns-anomaly"],
+    "thresholds_frozen_before_final_scenarios": true
+  },
+  "metrics": {
+    "detection_primary": ["macro_f1", "per_class_f1", "benign_fpr", "attack_fnr_as_benign"],
+    "defense": ["attack_containment_rate", "containment_latency", "false_block_rate", "legitimate_flow_disruption", "mitigation_duration", "unnecessary_mitigation_count", "rollback_count", "policy_decision_latency", "action_execution_latency"],
+    "resources": ["cpu", "memory", "model_inference_latency", "explanation_latency"],
+    "unavailable_metrics": "report unavailable; do not infer or fabricate",
+    "utility": "multi-objective cost table/Pareto comparison; no scalar weights selected after observing final outcomes"
+  },
+  "reproducibility": {
+    "model_seeds": [2026, 2027, 2028, 2029, 2030],
+    "stage5_artifacts_mutable": false,
+    "stage6_graphsage": false,
+    "raw_or_prepared_data_mutable": false,
+    "policy_threshold_source": "validation only",
+    "final_test_leakage_allowed": false,
+    "log_required": ["model/result ID", "score definition", "evidence IDs", "risk/reason", "action/scope/cookie/TTL", "decision/action timestamps", "OVS verification", "rollback/cleanup", "environment", "failures/deviations"]
+  },
+  "readiness": {
+    "protocol_ready_for_implementation": true,
+    "end_to_end_defense_evaluation_ready": false,
+    "blocking_gates": ["live CICFlowMeter feature parity", "flow/score/action correlation", "Ryu mitigation adapter", "meter verification", "protected-flow and rollback integration validation"]
+  }
+}

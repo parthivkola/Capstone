@@ -1,0 +1,667 @@
+{
+  "experiment_id": "CSE-5E2C-TUESDAY-LOIC-HTTP-RF-CONFIDENCE-OPEN-SET",
+  "stage": "5E.2C",
+  "research_question": "Does RF max-probability confidence support explicit UNKNOWN rejection for held-out LOIC-HTTP at a controlled benign rejection rate?",
+  "condition": "empirical confidence-based open-set evaluation for one CSE source-held-out unseen class; not a general zero-day claim",
+  "preflight": {
+    "passed": true,
+    "training_sources": [
+      {
+        "file": "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "d96f38e7496aba83475031e6fb8c6fdf1abf6aa1b71325a917798f3c7de93de1",
+        "prepared_sha256": "787787a9a9ffd4d5c267593c44b00653a7beeb9d045174a60dd279d40276a7d7",
+        "prepared_rows": 1044525,
+        "benign_rows_available_for_split": 758334
+      },
+      {
+        "file": "Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "d0a7f5059d9823b6e9b392b759e306481a3502d190dea7a1b5502ae079ea069b",
+        "prepared_sha256": "c0c7ab2f4bc0ccbf3a7f2a1700e9dcc44d3f7eb4004c2032fead300305681c5d",
+        "prepared_rows": 1042867,
+        "benign_rows_available_for_split": 1042301
+      },
+      {
+        "file": "Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "fa2947a8256d81ee9103ae16139d62d0e17aa23e696ee80d9e76fb51c01c9c4b",
+        "prepared_sha256": "e33987b46ba3be7c1ea9d50b56c743698ee281657894ea6d92b2c5766a7a794a",
+        "prepared_rows": 1040548,
+        "benign_rows_available_for_split": 988050
+      },
+      {
+        "file": "Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "da33c927018274f9d49b145baa00e4ce0526c25b3b890b34c489e247b5e24544",
+        "prepared_sha256": "038dcf4bd41b72e4580765185fc9d2811483d3149679fc7afcc5d614bc8f2df2",
+        "prepared_rows": 1042965,
+        "benign_rows_available_for_split": 1042603
+      },
+      {
+        "file": "Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "acff8bc61376ee031d80878ee6099e0b1a87a1bd711d8068298421418c9f8147",
+        "prepared_sha256": "1adcd2b6de088808b452dd32ae4f34590dc899a83cefb909de048fa617fe4aa9",
+        "prepared_rows": 1044751,
+        "benign_rows_available_for_split": 663808
+      },
+      {
+        "file": "Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "a5f4a1c2689e0aa6566c03a58466de9c407c0be0cbd3cc69306544026611be04",
+        "prepared_sha256": "2439b6f8c140d19dedfb179cbe1f9fc6dccdabc3a5ed48ec23834c94fad60276",
+        "prepared_rows": 1048575,
+        "benign_rows_available_for_split": 360833
+      }
+    ],
+    "training_source_count": 6,
+    "test_source": {
+      "file": "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+      "raw_sha256": "7287a4d7740a1dddbf330ceb2beb6a4889d33ba63674558a68b5eb50d16711df",
+      "prepared_sha256": "8a378abbf1706fa4dd6952e7bddb8b969dae3c7ead0deb5fa53b1b94726a9e4a",
+      "prepared_rows": 7889295
+    },
+    "test_source_excluded_from_model_fit_and_threshold_selection": true,
+    "loic_http_absent_from_training_source_labels": true,
+    "feature_count": 77,
+    "feature_names": [
+      "Protocol",
+      "Flow Duration",
+      "Tot Fwd Pkts",
+      "Tot Bwd Pkts",
+      "TotLen Fwd Pkts",
+      "TotLen Bwd Pkts",
+      "Fwd Pkt Len Max",
+      "Fwd Pkt Len Min",
+      "Fwd Pkt Len Mean",
+      "Fwd Pkt Len Std",
+      "Bwd Pkt Len Max",
+      "Bwd Pkt Len Min",
+      "Bwd Pkt Len Mean",
+      "Bwd Pkt Len Std",
+      "Flow Byts/s",
+      "Flow Pkts/s",
+      "Flow IAT Mean",
+      "Flow IAT Std",
+      "Flow IAT Max",
+      "Flow IAT Min",
+      "Fwd IAT Tot",
+      "Fwd IAT Mean",
+      "Fwd IAT Std",
+      "Fwd IAT Max",
+      "Fwd IAT Min",
+      "Bwd IAT Tot",
+      "Bwd IAT Mean",
+      "Bwd IAT Std",
+      "Bwd IAT Max",
+      "Bwd IAT Min",
+      "Fwd PSH Flags",
+      "Bwd PSH Flags",
+      "Fwd URG Flags",
+      "Bwd URG Flags",
+      "Fwd Header Len",
+      "Bwd Header Len",
+      "Fwd Pkts/s",
+      "Bwd Pkts/s",
+      "Pkt Len Min",
+      "Pkt Len Max",
+      "Pkt Len Mean",
+      "Pkt Len Std",
+      "Pkt Len Var",
+      "FIN Flag Cnt",
+      "SYN Flag Cnt",
+      "RST Flag Cnt",
+      "PSH Flag Cnt",
+      "ACK Flag Cnt",
+      "URG Flag Cnt",
+      "CWE Flag Count",
+      "ECE Flag Cnt",
+      "Down/Up Ratio",
+      "Pkt Size Avg",
+      "Fwd Seg Size Avg",
+      "Bwd Seg Size Avg",
+      "Fwd Byts/b Avg",
+      "Fwd Pkts/b Avg",
+      "Fwd Blk Rate Avg",
+      "Bwd Byts/b Avg",
+      "Bwd Pkts/b Avg",
+      "Bwd Blk Rate Avg",
+      "Subflow Fwd Pkts",
+      "Subflow Fwd Byts",
+      "Subflow Bwd Pkts",
+      "Subflow Bwd Byts",
+      "Init Fwd Win Byts",
+      "Init Bwd Win Byts",
+      "Fwd Act Data Pkts",
+      "Fwd Seg Size Min",
+      "Active Mean",
+      "Active Std",
+      "Active Max",
+      "Active Min",
+      "Idle Mean",
+      "Idle Std",
+      "Idle Max",
+      "Idle Min"
+    ],
+    "feature_dtype": "float32",
+    "target_column": "Label",
+    "benign_rows_available_for_partition": 4855929,
+    "all_rows_in_six_training_sources": 6264231,
+    "prepared_hashes_match_stage5d_manifest": true,
+    "raw_hashes_match_frozen_stage5a_audit_recorded_in_stage5d_manifest": true,
+    "training_sources_disjoint_from_tuesday": true,
+    "training_label_vocabulary": [
+      "Benign",
+      "Bot",
+      "Brute Force -Web",
+      "Brute Force -XSS",
+      "DDOS attack-HOIC",
+      "DDOS attack-LOIC-UDP",
+      "DoS attacks-GoldenEye",
+      "DoS attacks-Slowloris",
+      "FTP-BruteForce",
+      "SQL Injection",
+      "SSH-Bruteforce"
+    ],
+    "loic_http_absent_from_training_labels": true,
+    "rf_configuration": {
+      "passed": true,
+      "source_artifact": "experiments/stage5d/cse-source-holdout-rf.json",
+      "configuration": {
+        "name": "RandomForestClassifier",
+        "n_estimators": 100,
+        "max_depth": 18,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2,
+        "class_weight": "balanced_subsample",
+        "random_state": 2026,
+        "n_jobs": 1
+      }
+    },
+    "preprocessing_check": {
+      "passed": true,
+      "feature_conversion": "fixed CSV numeric text to float32",
+      "fitted_preprocessing": "none",
+      "tuesday_used_for_preprocessing_fit": false
+    },
+    "threshold_selection_input_check": {
+      "passed": true,
+      "selector_accepts_validation_benign_confidences_and_target_only": true,
+      "tuesday_test_labels_are_not_an_input": true
+    }
+  },
+  "model": {
+    "name": "RandomForestClassifier",
+    "n_estimators": 100,
+    "max_depth": 18,
+    "max_features": "sqrt",
+    "min_samples_leaf": 2,
+    "class_weight": "balanced_subsample",
+    "random_state": 2026,
+    "n_jobs": 1
+  },
+  "feature_schema": {
+    "count": 77,
+    "ordered_names": [
+      "Protocol",
+      "Flow Duration",
+      "Tot Fwd Pkts",
+      "Tot Bwd Pkts",
+      "TotLen Fwd Pkts",
+      "TotLen Bwd Pkts",
+      "Fwd Pkt Len Max",
+      "Fwd Pkt Len Min",
+      "Fwd Pkt Len Mean",
+      "Fwd Pkt Len Std",
+      "Bwd Pkt Len Max",
+      "Bwd Pkt Len Min",
+      "Bwd Pkt Len Mean",
+      "Bwd Pkt Len Std",
+      "Flow Byts/s",
+      "Flow Pkts/s",
+      "Flow IAT Mean",
+      "Flow IAT Std",
+      "Flow IAT Max",
+      "Flow IAT Min",
+      "Fwd IAT Tot",
+      "Fwd IAT Mean",
+      "Fwd IAT Std",
+      "Fwd IAT Max",
+      "Fwd IAT Min",
+      "Bwd IAT Tot",
+      "Bwd IAT Mean",
+      "Bwd IAT Std",
+      "Bwd IAT Max",
+      "Bwd IAT Min",
+      "Fwd PSH Flags",
+      "Bwd PSH Flags",
+      "Fwd URG Flags",
+      "Bwd URG Flags",
+      "Fwd Header Len",
+      "Bwd Header Len",
+      "Fwd Pkts/s",
+      "Bwd Pkts/s",
+      "Pkt Len Min",
+      "Pkt Len Max",
+      "Pkt Len Mean",
+      "Pkt Len Std",
+      "Pkt Len Var",
+      "FIN Flag Cnt",
+      "SYN Flag Cnt",
+      "RST Flag Cnt",
+      "PSH Flag Cnt",
+      "ACK Flag Cnt",
+      "URG Flag Cnt",
+      "CWE Flag Count",
+      "ECE Flag Cnt",
+      "Down/Up Ratio",
+      "Pkt Size Avg",
+      "Fwd Seg Size Avg",
+      "Bwd Seg Size Avg",
+      "Fwd Byts/b Avg",
+      "Fwd Pkts/b Avg",
+      "Fwd Blk Rate Avg",
+      "Bwd Byts/b Avg",
+      "Bwd Pkts/b Avg",
+      "Bwd Blk Rate Avg",
+      "Subflow Fwd Pkts",
+      "Subflow Fwd Byts",
+      "Subflow Bwd Pkts",
+      "Subflow Bwd Byts",
+      "Init Fwd Win Byts",
+      "Init Bwd Win Byts",
+      "Fwd Act Data Pkts",
+      "Fwd Seg Size Min",
+      "Active Mean",
+      "Active Std",
+      "Active Max",
+      "Active Min",
+      "Idle Mean",
+      "Idle Std",
+      "Idle Max",
+      "Idle Min"
+    ],
+    "dtype": "float32"
+  },
+  "preprocessing": {
+    "configuration": "frozen Stage 5D common ordered 77-feature schema; CSV numeric text cast to float32",
+    "learned_preprocessing": "none",
+    "tuesday_used_for_preprocessing_fit": false
+  },
+  "validation_protocol": {
+    "method": "within each non-Tuesday source and each training class, deterministic exact 20% row-ordinal sample without replacement; remaining rows fit RF",
+    "seed": 2026,
+    "fraction_per_source_class": 0.2,
+    "validation_rows": 1252837,
+    "benign_validation_rows": 971183,
+    "attack_validation_rows_excluded_from_threshold_fitting": 281654,
+    "threshold_uses_only_benign_validation_p_max": true,
+    "per_source_partition": [
+      {
+        "file": "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+        "source_order": 0,
+        "source_rows": 1044525,
+        "training_rows": 835621,
+        "validation_rows": 208904,
+        "validation_class_counts": {
+          "Benign": 151666,
+          "Bot": 57238
+        },
+        "validation_row_ordinals_sha256_by_class": {
+          "Benign": "99e1fd792052899867434dc124aca05f5784fc4094ba9db9bc48b1dd6ad7ab5d",
+          "Bot": "894df7426a1cc35873a0ac5a17636c150a42b69d2bd51272b5f41f8fa08448b7"
+        }
+      },
+      {
+        "file": "Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+        "source_order": 1,
+        "source_rows": 1042867,
+        "training_rows": 834295,
+        "validation_rows": 208572,
+        "validation_class_counts": {
+          "Benign": 208460,
+          "Brute Force -Web": 72,
+          "Brute Force -XSS": 30,
+          "SQL Injection": 10
+        },
+        "validation_row_ordinals_sha256_by_class": {
+          "Benign": "d0897f46a57a4d224a01860be33dafbef91a318fb5417ec211214310fedf5e8b",
+          "Brute Force -Web": "07fce4cfdd49cf3a73eab6cfa813ab9e492059275122fab9e407a23333b8ca44",
+          "Brute Force -XSS": "51d5cfe40cc78039ae9eebd73ed90020abf4074f265adf87f6cea9c0877d5ad1",
+          "SQL Injection": "96af89a0620527feb1177d63af62d36e2bf98bca4989f66df605ee090a958891"
+        }
+      },
+      {
+        "file": "Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+        "source_order": 2,
+        "source_rows": 1040548,
+        "training_rows": 832439,
+        "validation_rows": 208109,
+        "validation_class_counts": {
+          "Benign": 197610,
+          "DoS attacks-GoldenEye": 8301,
+          "DoS attacks-Slowloris": 2198
+        },
+        "validation_row_ordinals_sha256_by_class": {
+          "Benign": "c8066e3b935d85b9f83d76391d57e2c43dfe0820d5a0b51c2a5ad17311400efe",
+          "DoS attacks-GoldenEye": "5b5a77c19ff1136097b99a36009d184637c18ff291fa6028e7869aeef4155243",
+          "DoS attacks-Slowloris": "571eddec5b70b29dfbc93f4168f919f6d3aa04710c41a69e91555f2e75236f58"
+        }
+      },
+      {
+        "file": "Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+        "source_order": 3,
+        "source_rows": 1042965,
+        "training_rows": 834375,
+        "validation_rows": 208590,
+        "validation_class_counts": {
+          "Benign": 208520,
+          "Brute Force -Web": 49,
+          "Brute Force -XSS": 15,
+          "SQL Injection": 6
+        },
+        "validation_row_ordinals_sha256_by_class": {
+          "Benign": "4c89811344f3180cb70194156ccd723487db11847510df5d48f3e897d826ea19",
+          "Brute Force -Web": "e14698c533c886f7e5720f442ec760106d2cebbe4a5c250eb38e37c476e7f909",
+          "Brute Force -XSS": "0679ff5c674d8a0f3429b717e7bc646af2841a5218eec7eba0ed0fc2cdc04ee7",
+          "SQL Injection": "9908e323ce2e53a949596e35768660cbcbe100369d25d99f119a34cbf0bd2b5c"
+        }
+      },
+      {
+        "file": "Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+        "source_order": 4,
+        "source_rows": 1044751,
+        "training_rows": 835803,
+        "validation_rows": 208948,
+        "validation_class_counts": {
+          "Benign": 132761,
+          "FTP-BruteForce": 38670,
+          "SSH-Bruteforce": 37517
+        },
+        "validation_row_ordinals_sha256_by_class": {
+          "Benign": "320e293677e5b136a50206313115024123a6e32e366349e5f7fd43e3e06e9fd0",
+          "FTP-BruteForce": "6c31be585a519f245f16d75c539c40e5d54fbc1af3b4af775979dae49dcca376",
+          "SSH-Bruteforce": "652acbc8daa4d1d1df118413d315d6098df15c8af715da813ff8cc8df22260f4"
+        }
+      },
+      {
+        "file": "Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv",
+        "source_order": 5,
+        "source_rows": 1048575,
+        "training_rows": 838861,
+        "validation_rows": 209714,
+        "validation_class_counts": {
+          "Benign": 72166,
+          "DDOS attack-HOIC": 137202,
+          "DDOS attack-LOIC-UDP": 346
+        },
+        "validation_row_ordinals_sha256_by_class": {
+          "Benign": "5d6b9262099c35cc771e298480a5af47207e2c240a6f524107b2f29ae8fef602",
+          "DDOS attack-HOIC": "71c9ce410336824bec52fe7e9fc3fa84aa91f76b6584b7f20e317ec2c59a1a0a",
+          "DDOS attack-LOIC-UDP": "28e3bad7a96182cc535a0e8699aa8443420a4d6a66098796ebef61e3c8d83088"
+        }
+      }
+    ]
+  },
+  "training_rows": 5011394,
+  "attack_rows_in_six_training_sources_excluded_from_threshold_fitting": 1408302,
+  "test_source": "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+  "test_rows": 7889295,
+  "test_evaluated_once_after_threshold_freeze": true,
+  "test_labels_used_for_training_or_threshold_selection": false,
+  "training_class_vocabulary": [
+    "Benign",
+    "Bot",
+    "Brute Force -Web",
+    "Brute Force -XSS",
+    "DDOS attack-HOIC",
+    "DDOS attack-LOIC-UDP",
+    "DoS attacks-GoldenEye",
+    "DoS attacks-Slowloris",
+    "FTP-BruteForce",
+    "SQL Injection",
+    "SSH-Bruteforce"
+  ],
+  "loic_http_absent_from_training_vocabulary": true,
+  "score_and_decision": {
+    "confidence": "p_max = maximum Random Forest class probability",
+    "decision": "p_max < threshold -> UNKNOWN; otherwise retain RF argmax class",
+    "low_confidence_interpretation": "low confidence is tested as a rejection signal; it is not assumed to mean novelty"
+  },
+  "threshold_selection": {
+    "primary_pre_registered_benign_rejection": 0.01,
+    "method": "select confidence group boundary nearest the requested benign validation rejection count; strict p_max < threshold rejects; ties choose fewer rejections",
+    "thresholds": {
+      "0.5%": {
+        "target_benign_rejection_rate": 0.005,
+        "threshold": 0.45987834157517005,
+        "validation_benign_rows": 971183,
+        "validation_benign_rejected_count": 4774,
+        "validation_benign_rejection_rate": 0.004915654413225932,
+        "decision_rule": "p_max < threshold -> UNKNOWN; otherwise keep RF predicted class",
+        "tie_policy": "confidence ties are indivisible; equally close counts choose fewer rejections"
+      },
+      "1%": {
+        "target_benign_rejection_rate": 0.01,
+        "threshold": 0.4745344744621308,
+        "validation_benign_rows": 971183,
+        "validation_benign_rejected_count": 9634,
+        "validation_benign_rejection_rate": 0.009919860623589993,
+        "decision_rule": "p_max < threshold -> UNKNOWN; otherwise keep RF predicted class",
+        "tie_policy": "confidence ties are indivisible; equally close counts choose fewer rejections"
+      },
+      "2%": {
+        "target_benign_rejection_rate": 0.02,
+        "threshold": 0.4996097284155944,
+        "validation_benign_rows": 971183,
+        "validation_benign_rejected_count": 19346,
+        "validation_benign_rejection_rate": 0.01992003566784015,
+        "decision_rule": "p_max < threshold -> UNKNOWN; otherwise keep RF predicted class",
+        "tie_policy": "confidence ties are indivisible; equally close counts choose fewer rejections"
+      },
+      "5%": {
+        "target_benign_rejection_rate": 0.05,
+        "threshold": 0.653569967995288,
+        "validation_benign_rows": 971183,
+        "validation_benign_rejected_count": 48542,
+        "validation_benign_rejection_rate": 0.049982341124175364,
+        "decision_rule": "p_max < threshold -> UNKNOWN; otherwise keep RF predicted class",
+        "tie_policy": "confidence ties are indivisible; equally close counts choose fewer rejections"
+      }
+    },
+    "primary": {
+      "target_benign_rejection_rate": 0.01,
+      "threshold": 0.4745344744621308,
+      "validation_benign_rows": 971183,
+      "validation_benign_rejected_count": 9634,
+      "validation_benign_rejection_rate": 0.009919860623589993,
+      "decision_rule": "p_max < threshold -> UNKNOWN; otherwise keep RF predicted class",
+      "tie_policy": "confidence ties are indivisible; equally close counts choose fewer rejections"
+    }
+  },
+  "primary_metrics": {
+    "benign_test_rows": 7313104,
+    "loic_http_test_rows": 576191,
+    "benign_known_count": 7217316,
+    "benign_unknown_count": 95788,
+    "loic_http_known_count": 575882,
+    "loic_http_unknown_count": 309,
+    "benign_rejection_rate_fpr": 0.013098131791917631,
+    "loic_http_unknown_recall": 0.0005362805042078061,
+    "loic_http_known_rate": 0.9994637194957922,
+    "unknown_precision": 0.003215501004193679,
+    "unknown_f1": 0.0009192488933314295,
+    "balanced_accuracy": 0.4937190743561451,
+    "confusion_matrix_actual_rows_benign_then_loic_http_predicted_columns_known_then_unknown": [
+      [
+        7217316,
+        95788
+      ],
+      [
+        575882,
+        309
+      ]
+    ],
+    "loic_http_predicted_known_class_distribution": {
+      "Benign": 575095,
+      "Bot": 0,
+      "Brute Force -Web": 0,
+      "Brute Force -XSS": 0,
+      "DDOS attack-HOIC": 0,
+      "DDOS attack-LOIC-UDP": 787,
+      "DoS attacks-GoldenEye": 0,
+      "DoS attacks-Slowloris": 0,
+      "FTP-BruteForce": 0,
+      "SQL Injection": 0,
+      "SSH-Bruteforce": 0
+    }
+  },
+  "sensitivity": [
+    {
+      "target_benign_rejection": "0.5%",
+      "threshold": 0.45987834157517005,
+      "validation_benign_rejection": 0.004915654413225932,
+      "test_benign_rejection": 0.009325041733305037,
+      "loic_http_unknown_recall": 0.0003488426580769224,
+      "unknown_precision": 0.002938768349026259,
+      "unknown_f1": 0.0006236551466287716,
+      "balanced_accuracy": 0.4955119004623859
+    },
+    {
+      "target_benign_rejection": "1%",
+      "threshold": 0.4745344744621308,
+      "validation_benign_rejection": 0.009919860623589993,
+      "test_benign_rejection": 0.013098131791917631,
+      "loic_http_unknown_recall": 0.0005362805042078061,
+      "unknown_precision": 0.003215501004193679,
+      "unknown_f1": 0.0009192488933314295,
+      "balanced_accuracy": 0.4937190743561451
+    },
+    {
+      "target_benign_rejection": "2%",
+      "threshold": 0.4996097284155944,
+      "validation_benign_rejection": 0.01992003566784015,
+      "test_benign_rejection": 0.02190424202910283,
+      "loic_http_unknown_recall": 0.0009215694101435114,
+      "unknown_precision": 0.003303903085509492,
+      "unknown_f1": 0.0014411529223378704,
+      "balanced_accuracy": 0.4895086636905204
+    },
+    {
+      "target_benign_rejection": "5%",
+      "threshold": 0.653569967995288,
+      "validation_benign_rejection": 0.049982341124175364,
+      "test_benign_rejection": 0.05537539189925372,
+      "loic_http_unknown_recall": 0.0014214036664925347,
+      "unknown_precision": 0.002018310188893133,
+      "unknown_f1": 0.0016680652072963086,
+      "balanced_accuracy": 0.4730230058836194
+    }
+  ],
+  "test_class_distribution": {
+    "Benign": 7313104,
+    "DDoS attacks-LOIC-HTTP": 576191
+  },
+  "training_seconds": 1470.3223272469986,
+  "validation_inference_seconds_predict_proba_only": 5.261063148998801,
+  "test_inference_seconds_predict_proba_only": 31.571874201996252,
+  "test_inference_seconds_per_row": 4.001862549441522e-06,
+  "peak_process_rss_bytes": 2401521664,
+  "peak_memory_measurement": "process peak RSS via getrusage; includes preflight and data loading",
+  "comparisons": {
+    "stage5e2a": {
+      "condition": "closed-set RF without UNKNOWN output",
+      "direct_accuracy_comparison": false
+    },
+    "stage5e2b": {
+      "condition": "benign-only Isolation Forest novelty baseline",
+      "direct_accuracy_comparison": false
+    },
+    "interpretation": "Compare the targeted open-set rejection metrics only; do not claim broad superiority.",
+    "stage5e2a_context": {
+      "condition": "closed-set RF with no UNKNOWN output",
+      "loic_http_test_flows": 576191,
+      "all_flows_received_known_class_prediction": true,
+      "loic_http_assigned_to_benign_count": 575402,
+      "loic_http_assigned_to_benign_rate": 0.9986306624018771,
+      "known_class_distribution": {
+        "Benign": 575402,
+        "Bot": 0,
+        "Brute Force -Web": 2,
+        "Brute Force -XSS": 0,
+        "DDOS attack-HOIC": 0,
+        "DDOS attack-LOIC-UDP": 787,
+        "DoS attacks-GoldenEye": 0,
+        "DoS attacks-Slowloris": 0,
+        "FTP-BruteForce": 0,
+        "SQL Injection": 0,
+        "SSH-Bruteforce": 0
+      },
+      "comparison_scope": "contextual only; not direct accuracy comparison"
+    },
+    "stage5e2b_context": {
+      "condition": "benign-only Isolation Forest novelty baseline",
+      "primary_operating_point": 0.01,
+      "primary_benign_test_rejection_rate": 0.010791450524975441,
+      "primary_loic_http_unknown_recall": 0.0,
+      "comparison_scope": "contextual only; not direct accuracy comparison"
+    }
+  },
+  "reproducibility": {
+    "seed": 2026,
+    "source_hashes": [
+      {
+        "file": "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "d96f38e7496aba83475031e6fb8c6fdf1abf6aa1b71325a917798f3c7de93de1",
+        "prepared_sha256": "787787a9a9ffd4d5c267593c44b00653a7beeb9d045174a60dd279d40276a7d7",
+        "prepared_rows": 1044525,
+        "benign_rows_available_for_split": 758334
+      },
+      {
+        "file": "Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "d0a7f5059d9823b6e9b392b759e306481a3502d190dea7a1b5502ae079ea069b",
+        "prepared_sha256": "c0c7ab2f4bc0ccbf3a7f2a1700e9dcc44d3f7eb4004c2032fead300305681c5d",
+        "prepared_rows": 1042867,
+        "benign_rows_available_for_split": 1042301
+      },
+      {
+        "file": "Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "fa2947a8256d81ee9103ae16139d62d0e17aa23e696ee80d9e76fb51c01c9c4b",
+        "prepared_sha256": "e33987b46ba3be7c1ea9d50b56c743698ee281657894ea6d92b2c5766a7a794a",
+        "prepared_rows": 1040548,
+        "benign_rows_available_for_split": 988050
+      },
+      {
+        "file": "Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "da33c927018274f9d49b145baa00e4ce0526c25b3b890b34c489e247b5e24544",
+        "prepared_sha256": "038dcf4bd41b72e4580765185fc9d2811483d3149679fc7afcc5d614bc8f2df2",
+        "prepared_rows": 1042965,
+        "benign_rows_available_for_split": 1042603
+      },
+      {
+        "file": "Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "acff8bc61376ee031d80878ee6099e0b1a87a1bd711d8068298421418c9f8147",
+        "prepared_sha256": "1adcd2b6de088808b452dd32ae4f34590dc899a83cefb909de048fa617fe4aa9",
+        "prepared_rows": 1044751,
+        "benign_rows_available_for_split": 663808
+      },
+      {
+        "file": "Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "a5f4a1c2689e0aa6566c03a58466de9c407c0be0cbd3cc69306544026611be04",
+        "prepared_sha256": "2439b6f8c140d19dedfb179cbe1f9fc6dccdabc3a5ed48ec23834c94fad60276",
+        "prepared_rows": 1048575,
+        "benign_rows_available_for_split": 360833
+      },
+      {
+        "file": "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "7287a4d7740a1dddbf330ceb2beb6a4889d33ba63674558a68b5eb50d16711df",
+        "prepared_sha256": "8a378abbf1706fa4dd6952e7bddb8b969dae3c7ead0deb5fa53b1b94726a9e4a",
+        "prepared_rows": 7889295
+      }
+    ],
+    "software": {
+      "python": "3.11.16",
+      "numpy": "2.4.6",
+      "scikit_learn": "1.9.1",
+      "platform": "Linux-7.1.6-201.fc44.x86_64-x86_64-with-glibc2.43"
+    },
+    "raw_datasets_modified": false,
+    "prior_experiment_artifacts_modified": false
+  },
+  "validation_attack_rows_excluded_from_training_and_threshold_fitting": 281654
+}

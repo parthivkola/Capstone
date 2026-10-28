@@ -1,0 +1,569 @@
+{
+  "protocol_id": "stage5c1-cse-cic-ids2018-source-file-holdout",
+  "stage": "5C.1",
+  "status": "frozen_protocol_not_executed",
+  "models_trained": false,
+  "source_audit": "docs/research/dataset-audit/stage5a-dataset-audit.json",
+  "schema_analysis": "experiments/stage5c/cse-schema-analysis.json",
+  "raw_data_policy": "immutable; read only; no source file is rewritten",
+  "source_files": [
+    {
+      "path": "data/raw/cse-cic-ids2018/Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "d96f38e7496aba83475031e6fb8c6fdf1abf6aa1b71325a917798f3c7de93de1",
+      "rows_from_stage5a_audit": 1048575,
+      "columns": 80,
+      "schema_profile": "standard-80",
+      "label_counts": {
+        "Benign": 762384,
+        "Bot": 286191
+      },
+      "stage5a_repeated_header_rows": 0,
+      "stage5a_nonfinite_cell_count": 8100,
+      "roles": [
+        "holdout_A_train",
+        "holdout_B_train"
+      ],
+      "excluded_from_frozen_known_class_holdouts": false
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Friday-16-02-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Friday-16-02-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "1a4919faa0c49c7af97230b0c2d076eba23ee6dd81103a3801d51ac316355d8b",
+      "rows_from_stage5a_audit": 1048575,
+      "columns": 80,
+      "schema_profile": "standard-80-with-repeated-header-data",
+      "label_counts": {
+        "Benign": 446772,
+        "DoS attacks-Hulk": 461912,
+        "DoS attacks-SlowHTTPTest": 139890,
+        "Label": 1
+      },
+      "stage5a_repeated_header_rows": 1,
+      "stage5a_nonfinite_cell_count": 0,
+      "roles": [
+        "not_selected_in_frozen_known_class_holdouts"
+      ],
+      "excluded_from_frozen_known_class_holdouts": true
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "d0a7f5059d9823b6e9b392b759e306481a3502d190dea7a1b5502ae079ea069b",
+      "rows_from_stage5a_audit": 1048575,
+      "columns": 80,
+      "schema_profile": "standard-80",
+      "label_counts": {
+        "Benign": 1048009,
+        "Brute Force -Web": 362,
+        "Brute Force -XSS": 151,
+        "SQL Injection": 53
+      },
+      "stage5a_repeated_header_rows": 0,
+      "stage5a_nonfinite_cell_count": 11416,
+      "roles": [
+        "holdout_A_test",
+        "holdout_B_train"
+      ],
+      "excluded_from_frozen_known_class_holdouts": false
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "7287a4d7740a1dddbf330ceb2beb6a4889d33ba63674558a68b5eb50d16711df",
+      "rows_from_stage5a_audit": 7948748,
+      "columns": 84,
+      "schema_profile": "feb20-84",
+      "label_counts": {
+        "Benign": 7372557,
+        "DDoS attacks-LOIC-HTTP": 576191
+      },
+      "stage5a_repeated_header_rows": 0,
+      "stage5a_nonfinite_cell_count": 118906,
+      "roles": [
+        "holdout_A_train",
+        "holdout_B_train"
+      ],
+      "excluded_from_frozen_known_class_holdouts": false
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Thursday-01-03-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Thursday-01-03-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "b0534c5d7d8b41e03df71c6966c995d116a8ed28e61f377c8b14cdf5d28f4edf",
+      "rows_from_stage5a_audit": 331125,
+      "columns": 80,
+      "schema_profile": "standard-80-with-repeated-header-data",
+      "label_counts": {
+        "Benign": 238037,
+        "Infilteration": 93063,
+        "Label": 25
+      },
+      "stage5a_repeated_header_rows": 25,
+      "stage5a_nonfinite_cell_count": 5838,
+      "roles": [
+        "not_selected_in_frozen_known_class_holdouts"
+      ],
+      "excluded_from_frozen_known_class_holdouts": true
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "fa2947a8256d81ee9103ae16139d62d0e17aa23e696ee80d9e76fb51c01c9c4b",
+      "rows_from_stage5a_audit": 1048575,
+      "columns": 80,
+      "schema_profile": "standard-80",
+      "label_counts": {
+        "Benign": 996077,
+        "DoS attacks-GoldenEye": 41508,
+        "DoS attacks-Slowloris": 10990
+      },
+      "stage5a_repeated_header_rows": 0,
+      "stage5a_nonfinite_cell_count": 16054,
+      "roles": [
+        "holdout_A_train",
+        "holdout_B_train"
+      ],
+      "excluded_from_frozen_known_class_holdouts": false
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "da33c927018274f9d49b145baa00e4ce0526c25b3b890b34c489e247b5e24544",
+      "rows_from_stage5a_audit": 1048575,
+      "columns": 80,
+      "schema_profile": "standard-80",
+      "label_counts": {
+        "Benign": 1048213,
+        "Brute Force -Web": 249,
+        "Brute Force -XSS": 79,
+        "SQL Injection": 34
+      },
+      "stage5a_repeated_header_rows": 0,
+      "stage5a_nonfinite_cell_count": 11220,
+      "roles": [
+        "holdout_A_train",
+        "holdout_B_test"
+      ],
+      "excluded_from_frozen_known_class_holdouts": false
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "acff8bc61376ee031d80878ee6099e0b1a87a1bd711d8068298421418c9f8147",
+      "rows_from_stage5a_audit": 1048575,
+      "columns": 80,
+      "schema_profile": "standard-80",
+      "label_counts": {
+        "Benign": 667626,
+        "FTP-BruteForce": 193360,
+        "SSH-Bruteforce": 187589
+      },
+      "stage5a_repeated_header_rows": 0,
+      "stage5a_nonfinite_cell_count": 7648,
+      "roles": [
+        "holdout_A_train",
+        "holdout_B_train"
+      ],
+      "excluded_from_frozen_known_class_holdouts": false
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "a5f4a1c2689e0aa6566c03a58466de9c407c0be0cbd3cc69306544026611be04",
+      "rows_from_stage5a_audit": 1048575,
+      "columns": 80,
+      "schema_profile": "standard-80",
+      "label_counts": {
+        "Benign": 360833,
+        "DDOS attack-HOIC": 686012,
+        "DDOS attack-LOIC-UDP": 1730
+      },
+      "stage5a_repeated_header_rows": 0,
+      "stage5a_nonfinite_cell_count": 0,
+      "roles": [
+        "holdout_A_train",
+        "holdout_B_train"
+      ],
+      "excluded_from_frozen_known_class_holdouts": false
+    },
+    {
+      "path": "data/raw/cse-cic-ids2018/Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv",
+      "file": "Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv",
+      "sha256_from_stage5c_audit": "f15e2a12304446058a0186c8ad67de2bd15735a9ba5c70c9a1f4c4242ab06771",
+      "rows_from_stage5a_audit": 613104,
+      "columns": 80,
+      "schema_profile": "standard-80-with-repeated-header-data",
+      "label_counts": {
+        "Benign": 544200,
+        "Infilteration": 68871,
+        "Label": 33
+      },
+      "stage5a_repeated_header_rows": 33,
+      "stage5a_nonfinite_cell_count": 12338,
+      "roles": [
+        "not_selected_in_frozen_known_class_holdouts"
+      ],
+      "excluded_from_frozen_known_class_holdouts": true
+    }
+  ],
+  "common_schema": {
+    "column_count": 80,
+    "ordered_columns": [
+      "Dst Port",
+      "Protocol",
+      "Timestamp",
+      "Flow Duration",
+      "Tot Fwd Pkts",
+      "Tot Bwd Pkts",
+      "TotLen Fwd Pkts",
+      "TotLen Bwd Pkts",
+      "Fwd Pkt Len Max",
+      "Fwd Pkt Len Min",
+      "Fwd Pkt Len Mean",
+      "Fwd Pkt Len Std",
+      "Bwd Pkt Len Max",
+      "Bwd Pkt Len Min",
+      "Bwd Pkt Len Mean",
+      "Bwd Pkt Len Std",
+      "Flow Byts/s",
+      "Flow Pkts/s",
+      "Flow IAT Mean",
+      "Flow IAT Std",
+      "Flow IAT Max",
+      "Flow IAT Min",
+      "Fwd IAT Tot",
+      "Fwd IAT Mean",
+      "Fwd IAT Std",
+      "Fwd IAT Max",
+      "Fwd IAT Min",
+      "Bwd IAT Tot",
+      "Bwd IAT Mean",
+      "Bwd IAT Std",
+      "Bwd IAT Max",
+      "Bwd IAT Min",
+      "Fwd PSH Flags",
+      "Bwd PSH Flags",
+      "Fwd URG Flags",
+      "Bwd URG Flags",
+      "Fwd Header Len",
+      "Bwd Header Len",
+      "Fwd Pkts/s",
+      "Bwd Pkts/s",
+      "Pkt Len Min",
+      "Pkt Len Max",
+      "Pkt Len Mean",
+      "Pkt Len Std",
+      "Pkt Len Var",
+      "FIN Flag Cnt",
+      "SYN Flag Cnt",
+      "RST Flag Cnt",
+      "PSH Flag Cnt",
+      "ACK Flag Cnt",
+      "URG Flag Cnt",
+      "CWE Flag Count",
+      "ECE Flag Cnt",
+      "Down/Up Ratio",
+      "Pkt Size Avg",
+      "Fwd Seg Size Avg",
+      "Bwd Seg Size Avg",
+      "Fwd Byts/b Avg",
+      "Fwd Pkts/b Avg",
+      "Fwd Blk Rate Avg",
+      "Bwd Byts/b Avg",
+      "Bwd Pkts/b Avg",
+      "Bwd Blk Rate Avg",
+      "Subflow Fwd Pkts",
+      "Subflow Fwd Byts",
+      "Subflow Bwd Pkts",
+      "Subflow Bwd Byts",
+      "Init Fwd Win Byts",
+      "Init Bwd Win Byts",
+      "Fwd Act Data Pkts",
+      "Fwd Seg Size Min",
+      "Active Mean",
+      "Active Std",
+      "Active Max",
+      "Active Min",
+      "Idle Mean",
+      "Idle Std",
+      "Idle Max",
+      "Idle Min",
+      "Label"
+    ],
+    "label_column": "Label",
+    "structural_status": "common ordered 80-column schema; compatibility and processing policies frozen in this protocol",
+    "twenty_february_projection": {
+      "source": "data/raw/cse-cic-ids2018/Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+      "retain_columns_in_order": [
+        "Dst Port",
+        "Protocol",
+        "Timestamp",
+        "Flow Duration",
+        "Tot Fwd Pkts",
+        "Tot Bwd Pkts",
+        "TotLen Fwd Pkts",
+        "TotLen Bwd Pkts",
+        "Fwd Pkt Len Max",
+        "Fwd Pkt Len Min",
+        "Fwd Pkt Len Mean",
+        "Fwd Pkt Len Std",
+        "Bwd Pkt Len Max",
+        "Bwd Pkt Len Min",
+        "Bwd Pkt Len Mean",
+        "Bwd Pkt Len Std",
+        "Flow Byts/s",
+        "Flow Pkts/s",
+        "Flow IAT Mean",
+        "Flow IAT Std",
+        "Flow IAT Max",
+        "Flow IAT Min",
+        "Fwd IAT Tot",
+        "Fwd IAT Mean",
+        "Fwd IAT Std",
+        "Fwd IAT Max",
+        "Fwd IAT Min",
+        "Bwd IAT Tot",
+        "Bwd IAT Mean",
+        "Bwd IAT Std",
+        "Bwd IAT Max",
+        "Bwd IAT Min",
+        "Fwd PSH Flags",
+        "Bwd PSH Flags",
+        "Fwd URG Flags",
+        "Bwd URG Flags",
+        "Fwd Header Len",
+        "Bwd Header Len",
+        "Fwd Pkts/s",
+        "Bwd Pkts/s",
+        "Pkt Len Min",
+        "Pkt Len Max",
+        "Pkt Len Mean",
+        "Pkt Len Std",
+        "Pkt Len Var",
+        "FIN Flag Cnt",
+        "SYN Flag Cnt",
+        "RST Flag Cnt",
+        "PSH Flag Cnt",
+        "ACK Flag Cnt",
+        "URG Flag Cnt",
+        "CWE Flag Count",
+        "ECE Flag Cnt",
+        "Down/Up Ratio",
+        "Pkt Size Avg",
+        "Fwd Seg Size Avg",
+        "Bwd Seg Size Avg",
+        "Fwd Byts/b Avg",
+        "Fwd Pkts/b Avg",
+        "Fwd Blk Rate Avg",
+        "Bwd Byts/b Avg",
+        "Bwd Pkts/b Avg",
+        "Bwd Blk Rate Avg",
+        "Subflow Fwd Pkts",
+        "Subflow Fwd Byts",
+        "Subflow Bwd Pkts",
+        "Subflow Bwd Byts",
+        "Init Fwd Win Byts",
+        "Init Bwd Win Byts",
+        "Fwd Act Data Pkts",
+        "Fwd Seg Size Min",
+        "Active Mean",
+        "Active Std",
+        "Active Max",
+        "Active Min",
+        "Idle Mean",
+        "Idle Std",
+        "Idle Max",
+        "Idle Min",
+        "Label"
+      ],
+      "extra_source_columns": [
+        "Flow ID",
+        "Src IP",
+        "Src Port",
+        "Dst IP"
+      ],
+      "projection_is_explicit": true,
+      "raw_file_modified": false,
+      "note": "These four columns are source-specific additions; they are absent from the other nine source schemas and do not enter the common 80-column projection."
+    }
+  },
+  "feature_policy": {
+    "target": "Label",
+    "label_values_preserved_exactly": true,
+    "excluded_from_model_features": [
+      {
+        "column": "Label",
+        "reason": "target, never a predictor"
+      },
+      {
+        "column": "Flow ID",
+        "reason": "flow identifier; high leakage/re-identification risk; also absent from common schema"
+      },
+      {
+        "column": "Src IP",
+        "reason": "host identity can encode capture/source/attack identity; absent from common schema"
+      },
+      {
+        "column": "Dst IP",
+        "reason": "host identity can encode capture/source/attack identity; absent from common schema"
+      },
+      {
+        "column": "Timestamp",
+        "reason": "capture day/time proxy and temporal leakage risk; held-out source generalization should not key on timestamp"
+      },
+      {
+        "column": "Dst Port",
+        "reason": "conservative exclusion because port can act as a service/attack shortcut and Stage 5A flags it identifier-like"
+      }
+    ],
+    "source_only_fields": [
+      "Flow ID",
+      "Src IP",
+      "Src Port",
+      "Dst IP"
+    ],
+    "fields_not_excluded_by_default": [
+      "Protocol",
+      "aggregate packet/flow statistics"
+    ],
+    "policy_applies_to_all_files": true,
+    "no_silent_column_removal": true,
+    "excluded_columns_are_logged_in_future_run_manifest": true
+  },
+  "row_quality_policy": {
+    "repeated_header": {
+      "action": "exclude_row",
+      "detection": "after CSV parsing, compare every row cell-for-cell to that source file ordered header; exact equality only",
+      "trim_or_normalize_for_detection": false,
+      "known_rows_by_file": {
+        "Friday-16-02-2018_TrafficForML_CICFlowMeter.csv": 1,
+        "Thursday-01-03-2018_TrafficForML_CICFlowMeter.csv": 25,
+        "Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv": 33
+      },
+      "known_repeated_header_total": 59,
+      "known_selected_holdout_files_have_repeated_header_rows": 0,
+      "raw_files_changed": false
+    },
+    "nonfinite": {
+      "action": "exclude_affected_row",
+      "scope": "any numeric field in the projected common feature schema before model-feature exclusions; Label is not numeric feature data",
+      "nan": "exclude row",
+      "positive_infinity": "exclude row",
+      "negative_infinity": "exclude row",
+      "finite_zero": "retain row",
+      "impute_or_replace": false,
+      "stage5a_audit_counts_are_cells_not_affected_rows": true,
+      "affected_row_counts": "must be counted by file during future preparation; not inferable from Stage 5A per-cell totals",
+      "unrecognized_missing_tokens": "block and report pending an explicit policy; Stage 5A observed zero missing cells in all CSE files"
+    },
+    "duplicates": {
+      "automatic_deduplication": false,
+      "report_counts_per_file": true
+    },
+    "preprocessing_fit_scope": "no preprocessing or model fitting in Stage 5C.1; any future fit state must use training files only"
+  },
+  "source_file_holdouts": [
+    {
+      "id": "CSE-SFH-A",
+      "train": [
+        "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+        "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+        "Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+        "Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+        "Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+        "Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv"
+      ],
+      "test": [
+        "Friday-23-02-2018_TrafficForML_CICFlowMeter.csv"
+      ],
+      "row_randomization_across_sources": false,
+      "train_label_counts": {
+        "Benign": 11207690,
+        "Bot": 286191,
+        "Brute Force -Web": 249,
+        "Brute Force -XSS": 79,
+        "DDOS attack-HOIC": 686012,
+        "DDOS attack-LOIC-UDP": 1730,
+        "DDoS attacks-LOIC-HTTP": 576191,
+        "DoS attacks-GoldenEye": 41508,
+        "DoS attacks-Slowloris": 10990,
+        "FTP-BruteForce": 193360,
+        "SQL Injection": 34,
+        "SSH-Bruteforce": 187589
+      },
+      "test_label_counts": {
+        "Benign": 1048009,
+        "Brute Force -Web": 362,
+        "Brute Force -XSS": 151,
+        "SQL Injection": 53
+      },
+      "known_class_support": "all test labels occur in training: Benign, Brute Force -Web, Brute Force -XSS, SQL Injection"
+    },
+    {
+      "id": "CSE-SFH-B",
+      "train": [
+        "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+        "Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+        "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+        "Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+        "Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+        "Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv"
+      ],
+      "test": [
+        "Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv"
+      ],
+      "row_randomization_across_sources": false,
+      "train_label_counts": {
+        "Benign": 11207486,
+        "Bot": 286191,
+        "Brute Force -Web": 362,
+        "Brute Force -XSS": 151,
+        "DDOS attack-HOIC": 686012,
+        "DDOS attack-LOIC-UDP": 1730,
+        "DDoS attacks-LOIC-HTTP": 576191,
+        "DoS attacks-GoldenEye": 41508,
+        "DoS attacks-Slowloris": 10990,
+        "FTP-BruteForce": 193360,
+        "SQL Injection": 53,
+        "SSH-Bruteforce": 187589
+      },
+      "test_label_counts": {
+        "Benign": 1048213,
+        "Brute Force -Web": 249,
+        "Brute Force -XSS": 79,
+        "SQL Injection": 34
+      },
+      "known_class_support": "all test labels occur in training: Benign, Brute Force -Web, Brute Force -XSS, SQL Injection"
+    }
+  ],
+  "not_selected_source_files": [
+    "Friday-16-02-2018_TrafficForML_CICFlowMeter.csv",
+    "Thursday-01-03-2018_TrafficForML_CICFlowMeter.csv",
+    "Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv"
+  ],
+  "unseen_class_condition": {
+    "label": "DDoS attacks-LOIC-HTTP",
+    "source": "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+    "training_support_in_frozen_known_class_experiments": true,
+    "policy": "If the 20-February source is held out, evaluate this as a separate unseen-class/source experiment because the other nine files provide no training support. In frozen A/B, the 20-February file is a training source and this label has 576,191 training examples; the label is absent from both held-out files.",
+    "support_counts_in_frozen_known_class_training": {
+      "CSE-SFH-A": 576191,
+      "CSE-SFH-B": 576191
+    },
+    "known_class_test_occurrence": "absent from both frozen held-out source files; it is a supported training class in both configurations",
+    "separate_condition": "if the 20-February source itself is held out, this label has no support in the other nine files and must be evaluated as a separate unseen-class/source condition"
+  },
+  "reproducibility": {
+    "random_seed": null,
+    "reason": "primary splits are by whole source file; no random row partition is allowed",
+    "future_manifest_required": [
+      "raw source SHA-256",
+      "row counts before/after each quality filter by file",
+      "common projection and ordered features",
+      "excluded feature rationale",
+      "label counts per source/split",
+      "software versions",
+      "holdout ID"
+    ]
+  }
+}

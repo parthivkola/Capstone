@@ -1,0 +1,7 @@
+# ADR 011: Artifact-backed project data views
+
+- **Status:** Accepted for local review
+- **Context:** The previous dashboard showed only synthetic scenario fixtures. The workspace contains frozen aggregate Stage 5 experiment JSON, prepared Stage 5D labeled data, raw dataset files, and historical telemetry JSONL. No row-level prediction artifact was identified; telemetry candidates do not pass provenance completeness checks.
+- **Decision:** Add read-only adapters over an explicit allowlist of existing artifacts. Return exact source paths and SHA-256 values for evaluation/prepared records, preserve original dataset labels, show prediction as null, and display telemetry only with audit outcome and explicit evidence-ineligible status. Keep synthetic demo fixtures separately selectable.
+- **Alternatives considered:** Recreate row-level predictions from aggregate metrics (rejected as fabricated); treat source labels as predictions (rejected as semantic misrepresentation); load all raw datasets into memory (rejected due size and lack of need); ingest incomplete telemetry as detections (rejected by provenance gate).
+- **Consequences:** Reviewers can inspect genuine records and provenance without changing frozen data or implying live inference. Dataset preview hashes the selected compressed artifact, validates its schema and labels, and returns a deterministic first-N prefix that is not representative sampling. Raw files remain inventory-only. Large data remain local and ignored by Git.

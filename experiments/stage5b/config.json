@@ -1,0 +1,37 @@
+{
+  "stage": "5B",
+  "seed": 2026,
+  "execution": {
+    "dataset": "UNSW-NB15",
+    "source": "official train/test pair",
+    "target": "attack_cat",
+    "known_class_task": true,
+    "models": ["majority_class", "isolation_forest", "random_forest"],
+    "random_forest": {
+      "n_estimators": 100,
+      "max_depth": 18,
+      "max_features": "sqrt",
+      "min_samples_leaf": 2,
+      "class_weight": "balanced_subsample",
+      "n_jobs": 1
+    },
+    "isolation_forest": {
+      "n_estimators": 100,
+      "fit_data": "benign rows of 80% inner-training subset of official training file",
+      "threshold": "5th percentile of decision_function on benign 20% inner-validation subset",
+      "n_jobs": 1
+    },
+    "inner_split": {
+      "strategy": "stratified random split within official training file",
+      "training_fraction": 0.8,
+      "validation_fraction": 0.2
+    },
+    "official_test": "UNSW_NB15_testing-set.csv; no fit, preprocessing, feature selection, or threshold selection"
+  },
+  "not_executed": {
+    "CIC-IDS2017": "Source-file holdouts contain labels not observed in other source files; a known-class source-held-out result is not defined for the complete label set. Random reference execution is deferred pending a declared row/subset policy.",
+    "CSE-CIC-IDS2018": "Files remain separate; 20-Feb schema differs and source-file label supports vary. No cross-file feature concat or source-held-out known-class run performed.",
+    "TON_IoT": "Only public-mirror train_test_network.csv is acquired; no verified source split. Random reference split is not promoted as generalization evidence and this artifact was not executed in this run.",
+    "UNSW-NB15 raw partitions": "Not mixed with official train/test files; headerless positional feature mapping is not confirmed for this experiment."
+  }
+}

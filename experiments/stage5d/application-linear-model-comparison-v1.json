@@ -1,0 +1,251 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "logreg_l2_c1_lbfgs",
+      "disqualified_reason": null,
+      "hyperparameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 400,
+        "penalty": "l2",
+        "solver": "lbfgs"
+      },
+      "selected": false,
+      "validation": {
+        "accuracy": 0.8712121212121212,
+        "attack_fnr": 0.1323529411764706,
+        "benign_fpr": 0.12755102040816327,
+        "confusion_matrix": [
+          [
+            171,
+            25
+          ],
+          [
+            9,
+            59
+          ]
+        ],
+        "label_order": [
+          "BENIGN",
+          "INTRUSION"
+        ],
+        "macro_f1": 0.8429451287793952,
+        "macro_precision": 0.8261904761904761,
+        "macro_recall": 0.8700480192076832,
+        "support": {
+          "BENIGN": 196,
+          "INTRUSION": 68
+        }
+      }
+    },
+    {
+      "candidate_id": "logreg_l2_c0_1_lbfgs",
+      "disqualified_reason": null,
+      "hyperparameters": {
+        "C": 0.1,
+        "class_weight": "balanced",
+        "max_iter": 400,
+        "penalty": "l2",
+        "solver": "lbfgs"
+      },
+      "selected": false,
+      "validation": {
+        "accuracy": 0.875,
+        "attack_fnr": 0.10294117647058823,
+        "benign_fpr": 0.1326530612244898,
+        "confusion_matrix": [
+          [
+            170,
+            26
+          ],
+          [
+            7,
+            61
+          ]
+        ],
+        "label_order": [
+          "BENIGN",
+          "INTRUSION"
+        ],
+        "macro_f1": 0.8493124621637984,
+        "macro_precision": 0.8308007013442431,
+        "macro_recall": 0.8822028811524609,
+        "support": {
+          "BENIGN": 196,
+          "INTRUSION": 68
+        }
+      }
+    },
+    {
+      "candidate_id": "logreg_l2_c10_lbfgs",
+      "disqualified_reason": null,
+      "hyperparameters": {
+        "C": 10.0,
+        "class_weight": "balanced",
+        "max_iter": 400,
+        "penalty": "l2",
+        "solver": "lbfgs"
+      },
+      "selected": false,
+      "validation": {
+        "accuracy": 0.7765151515151515,
+        "attack_fnr": 0.5,
+        "benign_fpr": 0.12755102040816327,
+        "confusion_matrix": [
+          [
+            171,
+            25
+          ],
+          [
+            34,
+            34
+          ]
+        ],
+        "label_order": [
+          "BENIGN",
+          "INTRUSION"
+        ],
+        "macro_f1": 0.6941504506450409,
+        "macro_precision": 0.7052087639520463,
+        "macro_recall": 0.6862244897959184,
+        "support": {
+          "BENIGN": 196,
+          "INTRUSION": 68
+        }
+      }
+    },
+    {
+      "candidate_id": "logreg_l1_c1_saga",
+      "disqualified_reason": null,
+      "hyperparameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 800,
+        "penalty": "l1",
+        "solver": "saga"
+      },
+      "selected": true,
+      "test": {
+        "accuracy": 0.7769028871391076,
+        "attack_fnr": 0.2916666666666667,
+        "benign_fpr": 0.15343915343915343,
+        "confusion_matrix": [
+          [
+            160,
+            29
+          ],
+          [
+            56,
+            136
+          ]
+        ],
+        "label_order": [
+          "BENIGN",
+          "INTRUSION"
+        ],
+        "macro_f1": 0.7760141093474426,
+        "macro_precision": 0.7824915824915825,
+        "macro_recall": 0.77744708994709,
+        "support": {
+          "BENIGN": 189,
+          "INTRUSION": 192
+        }
+      },
+      "validation": {
+        "accuracy": 0.8901515151515151,
+        "attack_fnr": 0.07352941176470588,
+        "benign_fpr": 0.12244897959183673,
+        "confusion_matrix": [
+          [
+            172,
+            24
+          ],
+          [
+            5,
+            63
+          ]
+        ],
+        "label_order": [
+          "BENIGN",
+          "INTRUSION"
+        ],
+        "macro_f1": 0.867577618265156,
+        "macro_precision": 0.8479446717319307,
+        "macro_recall": 0.9020108043217288,
+        "support": {
+          "BENIGN": 196,
+          "INTRUSION": 68
+        }
+      }
+    }
+  ],
+  "created_at": "2026-10-28T11:19:07.878111+00:00",
+  "limitations": [
+    "Comparison is limited to JSON-exportable linear logistic models for safe offline inference and exact SHAP attributions.",
+    "Sampling is not representative of the full CSE-CIC-IDS2018 distribution.",
+    "This does not replace frozen Stage 5 research artifacts."
+  ],
+  "max_benign_fpr": 0.25,
+  "max_records_per_class_per_source": 200,
+  "protocol": "offline-application-linear-model-comparison-v1",
+  "seed": 20261028,
+  "selection_rule": "Choose the eligible candidate with highest validation macro_f1, breaking ties by lower benign_fpr then candidate_id. Test metrics are computed only for the winner.",
+  "winner": {
+    "candidate_id": "logreg_l1_c1_saga",
+    "disqualified_reason": null,
+    "output_dir": "var/models/cse-cicflowmeter-binary-logistic-v2",
+    "test": {
+      "accuracy": 0.7769028871391076,
+      "attack_fnr": 0.2916666666666667,
+      "benign_fpr": 0.15343915343915343,
+      "confusion_matrix": [
+        [
+          160,
+          29
+        ],
+        [
+          56,
+          136
+        ]
+      ],
+      "label_order": [
+        "BENIGN",
+        "INTRUSION"
+      ],
+      "macro_f1": 0.7760141093474426,
+      "macro_precision": 0.7824915824915825,
+      "macro_recall": 0.77744708994709,
+      "support": {
+        "BENIGN": 189,
+        "INTRUSION": 192
+      }
+    },
+    "validation": {
+      "accuracy": 0.8901515151515151,
+      "attack_fnr": 0.07352941176470588,
+      "benign_fpr": 0.12244897959183673,
+      "confusion_matrix": [
+        [
+          172,
+          24
+        ],
+        [
+          5,
+          63
+        ]
+      ],
+      "label_order": [
+        "BENIGN",
+        "INTRUSION"
+      ],
+      "macro_f1": 0.867577618265156,
+      "macro_precision": 0.8479446717319307,
+      "macro_recall": 0.9020108043217288,
+      "support": {
+        "BENIGN": 196,
+        "INTRUSION": 68
+      }
+    },
+    "version": "2.0.0"
+  }
+}

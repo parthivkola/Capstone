@@ -1,0 +1,24 @@
+{
+  "artifact": "baseline.json",
+  "artifact_format": "sentinel-live-robust-baseline-v1",
+  "artifact_sha256": "6497b79dfb3a6f5f6840220e35e1bcdc60efae32e3369a62caff735e1fcedbc2",
+  "feature_order": [
+    "rule_packet_delta",
+    "rule_byte_delta",
+    "rule_packet_rate_per_second",
+    "rule_byte_rate_per_second"
+  ],
+  "feature_schema_id": "stage7-live-rule-window-v1",
+  "model_id": "stage7-live-robust-anomaly",
+  "status": "PROVISIONAL_BENIGN_CALIBRATION",
+  "training_runs": [
+    {
+      "accepted_pairs": 10,
+      "artifact": "/home/parthivkola/Workspace/Projects/Capstone/experiments/stage7-telemetry/live-2026-10-28-first-verified-benign-04/telemetry.jsonl",
+      "run_id": "4a0e15fa-1087-4e0d-be00-6e366ca45ddf",
+      "sha256": "52e56936a506e81c3cc84ea812df6e5007554d3aeedd600470826634cc0b7d26",
+      "valid_windows": 10
+    }
+  ],
+  "version": "0.1.0"
+}

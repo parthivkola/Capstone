@@ -1,0 +1,448 @@
+{
+  "protocol_id": "stage5f-cse-source-distribution-shift-adaptation-v1",
+  "stage": "5F-PROTOCOL",
+  "status": "frozen_design_only_no_model_training_or_drift_detector_implementation",
+  "research_question": "Can a detector recognize meaningful changes in network behavior and adapt through bounded, controlled updates without full retraining, while preserving performance on previously learned behavior?",
+  "study_claim": {
+    "primary_condition": "source/distribution shift",
+    "temporal_order_supported": false,
+    "concept_drift_claim_allowed": false,
+    "reason": "Repository provenance does not establish timestamp clock semantics, source capture chronology, or consistent capture/extraction settings; audited timestamp anomalies include 1970 values. The protocol sequence is imposed for repeatability and is not inferred from filenames or timestamps.",
+    "distribution_shift_scope": "changes in P(X) and P(Y) across frozen source files; report them separately where estimable",
+    "concept_drift_definition": "P(Y|X) changes under a trustworthy temporal or controlled intervention design; the current source progression does not establish this."
+  },
+  "frozen_inputs": {
+    "preparation_stage": "Stage 5D-Prep",
+    "preparation_manifest": "experiments/stage5d/cse-preparation.json",
+    "preparation_manifest_sha256": "5de3638478173750eaa4eef5ed966124467cd4131b0f3e398b67cb35026f3137",
+    "raw_data_modified": false,
+    "prepared_data_modified": false,
+    "sources": [
+      {
+        "file": "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_path": "data/raw/cse-cic-ids2018/Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "d96f38e7496aba83475031e6fb8c6fdf1abf6aa1b71325a917798f3c7de93de1",
+        "prepared_path": "data/processed/stage5d/cse-cic-ids2018/Friday-02-03-2018_TrafficForML_CICFlowMeter.csv.model-ready.csv.gz",
+        "prepared_sha256": "787787a9a9ffd4d5c267593c44b00653a7beeb9d045174a60dd279d40276a7d7",
+        "prepared_rows": 1044525,
+        "prepared_class_counts": {
+          "Benign": 758334,
+          "Bot": 286191
+        },
+        "role": "sequential_evaluation_window",
+        "source_manifest_index": 0
+      },
+      {
+        "file": "Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_path": "data/raw/cse-cic-ids2018/Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "d0a7f5059d9823b6e9b392b759e306481a3502d190dea7a1b5502ae079ea069b",
+        "prepared_path": "data/processed/stage5d/cse-cic-ids2018/Friday-23-02-2018_TrafficForML_CICFlowMeter.csv.model-ready.csv.gz",
+        "prepared_sha256": "c0c7ab2f4bc0ccbf3a7f2a1700e9dcc44d3f7eb4004c2032fead300305681c5d",
+        "prepared_rows": 1042867,
+        "prepared_class_counts": {
+          "Benign": 1042301,
+          "Brute Force -Web": 362,
+          "Brute Force -XSS": 151,
+          "SQL Injection": 53
+        },
+        "role": "sequential_evaluation_window",
+        "source_manifest_index": 1
+      },
+      {
+        "file": "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_path": "data/raw/cse-cic-ids2018/Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "7287a4d7740a1dddbf330ceb2beb6a4889d33ba63674558a68b5eb50d16711df",
+        "prepared_path": "data/processed/stage5d/cse-cic-ids2018/Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv.model-ready.csv.gz",
+        "prepared_sha256": "8a378abbf1706fa4dd6952e7bddb8b969dae3c7ead0deb5fa53b1b94726a9e4a",
+        "prepared_rows": 7889295,
+        "prepared_class_counts": {
+          "Benign": 7313104,
+          "DDoS attacks-LOIC-HTTP": 576191
+        },
+        "role": "sequential_evaluation_window",
+        "source_manifest_index": 2
+      },
+      {
+        "file": "Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_path": "data/raw/cse-cic-ids2018/Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "fa2947a8256d81ee9103ae16139d62d0e17aa23e696ee80d9e76fb51c01c9c4b",
+        "prepared_path": "data/processed/stage5d/cse-cic-ids2018/Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv.model-ready.csv.gz",
+        "prepared_sha256": "e33987b46ba3be7c1ea9d50b56c743698ee281657894ea6d92b2c5766a7a794a",
+        "prepared_rows": 1040548,
+        "prepared_class_counts": {
+          "Benign": 988050,
+          "DoS attacks-GoldenEye": 41508,
+          "DoS attacks-Slowloris": 10990
+        },
+        "role": "initial_training_source",
+        "source_manifest_index": 3
+      },
+      {
+        "file": "Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_path": "data/raw/cse-cic-ids2018/Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "da33c927018274f9d49b145baa00e4ce0526c25b3b890b34c489e247b5e24544",
+        "prepared_path": "data/processed/stage5d/cse-cic-ids2018/Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv.model-ready.csv.gz",
+        "prepared_sha256": "038dcf4bd41b72e4580765185fc9d2811483d3149679fc7afcc5d614bc8f2df2",
+        "prepared_rows": 1042965,
+        "prepared_class_counts": {
+          "Benign": 1042603,
+          "Brute Force -Web": 249,
+          "Brute Force -XSS": 79,
+          "SQL Injection": 34
+        },
+        "role": "sequential_evaluation_window",
+        "source_manifest_index": 4
+      },
+      {
+        "file": "Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_path": "data/raw/cse-cic-ids2018/Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "acff8bc61376ee031d80878ee6099e0b1a87a1bd711d8068298421418c9f8147",
+        "prepared_path": "data/processed/stage5d/cse-cic-ids2018/Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv.model-ready.csv.gz",
+        "prepared_sha256": "1adcd2b6de088808b452dd32ae4f34590dc899a83cefb909de048fa617fe4aa9",
+        "prepared_rows": 1044751,
+        "prepared_class_counts": {
+          "Benign": 663808,
+          "FTP-BruteForce": 193354,
+          "SSH-Bruteforce": 187589
+        },
+        "role": "initial_training_source",
+        "source_manifest_index": 5
+      },
+      {
+        "file": "Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_path": "data/raw/cse-cic-ids2018/Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv",
+        "raw_sha256": "a5f4a1c2689e0aa6566c03a58466de9c407c0be0cbd3cc69306544026611be04",
+        "prepared_path": "data/processed/stage5d/cse-cic-ids2018/Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv.model-ready.csv.gz",
+        "prepared_sha256": "2439b6f8c140d19dedfb179cbe1f9fc6dccdabc3a5ed48ec23834c94fad60276",
+        "prepared_rows": 1048575,
+        "prepared_class_counts": {
+          "Benign": 360833,
+          "DDOS attack-HOIC": 686012,
+          "DDOS attack-LOIC-UDP": 1730
+        },
+        "role": "initial_training_source",
+        "source_manifest_index": 6
+      }
+    ],
+    "ordered_model_features": [
+      "Protocol",
+      "Flow Duration",
+      "Tot Fwd Pkts",
+      "Tot Bwd Pkts",
+      "TotLen Fwd Pkts",
+      "TotLen Bwd Pkts",
+      "Fwd Pkt Len Max",
+      "Fwd Pkt Len Min",
+      "Fwd Pkt Len Mean",
+      "Fwd Pkt Len Std",
+      "Bwd Pkt Len Max",
+      "Bwd Pkt Len Min",
+      "Bwd Pkt Len Mean",
+      "Bwd Pkt Len Std",
+      "Flow Byts/s",
+      "Flow Pkts/s",
+      "Flow IAT Mean",
+      "Flow IAT Std",
+      "Flow IAT Max",
+      "Flow IAT Min",
+      "Fwd IAT Tot",
+      "Fwd IAT Mean",
+      "Fwd IAT Std",
+      "Fwd IAT Max",
+      "Fwd IAT Min",
+      "Bwd IAT Tot",
+      "Bwd IAT Mean",
+      "Bwd IAT Std",
+      "Bwd IAT Max",
+      "Bwd IAT Min",
+      "Fwd PSH Flags",
+      "Bwd PSH Flags",
+      "Fwd URG Flags",
+      "Bwd URG Flags",
+      "Fwd Header Len",
+      "Bwd Header Len",
+      "Fwd Pkts/s",
+      "Bwd Pkts/s",
+      "Pkt Len Min",
+      "Pkt Len Max",
+      "Pkt Len Mean",
+      "Pkt Len Std",
+      "Pkt Len Var",
+      "FIN Flag Cnt",
+      "SYN Flag Cnt",
+      "RST Flag Cnt",
+      "PSH Flag Cnt",
+      "ACK Flag Cnt",
+      "URG Flag Cnt",
+      "CWE Flag Count",
+      "ECE Flag Cnt",
+      "Down/Up Ratio",
+      "Pkt Size Avg",
+      "Fwd Seg Size Avg",
+      "Bwd Seg Size Avg",
+      "Fwd Byts/b Avg",
+      "Fwd Pkts/b Avg",
+      "Fwd Blk Rate Avg",
+      "Bwd Byts/b Avg",
+      "Bwd Pkts/b Avg",
+      "Bwd Blk Rate Avg",
+      "Subflow Fwd Pkts",
+      "Subflow Fwd Byts",
+      "Subflow Bwd Pkts",
+      "Subflow Bwd Byts",
+      "Init Fwd Win Byts",
+      "Init Bwd Win Byts",
+      "Fwd Act Data Pkts",
+      "Fwd Seg Size Min",
+      "Active Mean",
+      "Active Std",
+      "Active Max",
+      "Active Min",
+      "Idle Mean",
+      "Idle Std",
+      "Idle Max",
+      "Idle Min"
+    ],
+    "feature_count": 77,
+    "feature_dtype": "float32",
+    "preprocessing": "Frozen Stage 5D preparation and fixed float32 parsing; no data-fitted scaler, imputer, or feature selection.",
+    "excluded_fields": [
+      "Label",
+      "Flow ID",
+      "Src IP",
+      "Dst IP",
+      "Timestamp",
+      "Dst Port"
+    ],
+    "timestamp_used_for_ordering_or_features": false
+  },
+  "task_definition": {
+    "task": "binary known-behavior detection under source/distribution shift",
+    "label_mapping": {
+      "Benign": "Benign",
+      "every_other_frozen_source_label": "Attack"
+    },
+    "label_vocabulary": [
+      "Benign",
+      "Attack"
+    ],
+    "reason_for_binary_mapping": "Every source has benign and attack traffic, while attack-family support is source-specific. Binary mapping keeps the prediction space fixed across windows; it does not evaluate attack-family identification or novelty detection."
+  },
+  "source_and_window_design": {
+    "ordering_rule": "Initial sources are fixed by explicit protocol list. Evaluation sources follow their relative order in the frozen Stage 5D preparation manifest after removing initial sources. This is an experiment schedule, not a chronological claim.",
+    "initial_training_sources": [
+      "Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv",
+      "Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv",
+      "Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv"
+    ],
+    "initial_source_partition": {
+      "unit": "rows stratified by the binary label within each initial source",
+      "method": "Rank each row deterministically by SHA-256(seed || source filename || prepared-file row ordinal); break any hash tie by row ordinal. Within each source and binary label, assign the first 70% to initial fit, next 15% to validation, and final 15% to a sealed forgetting-regression anchor.",
+      "seed": 2026,
+      "row_roles_disjoint": true,
+      "validation_purpose": "initial baseline and detector false-alarm check only; no model, feature, or detector-threshold tuning",
+      "forgetting_anchor_purpose": "fixed regression evaluation; never used for fitting, drift reference updates, or adaptation"
+    },
+    "sequential_evaluation_windows": [
+      {
+        "window_id": "W1",
+        "source_file": "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
+        "source_manifest_index": 0,
+        "rows": "all prepared rows in this source, processed in file order only; file order is not treated as time",
+        "labels_available_to_detector_or_adaptation_at_window_start": false,
+        "order_basis": "frozen source manifest position, not timestamp or filename chronology"
+      },
+      {
+        "window_id": "W2",
+        "source_file": "Friday-23-02-2018_TrafficForML_CICFlowMeter.csv",
+        "source_manifest_index": 1,
+        "rows": "all prepared rows in this source, processed in file order only; file order is not treated as time",
+        "labels_available_to_detector_or_adaptation_at_window_start": false,
+        "order_basis": "frozen source manifest position, not timestamp or filename chronology"
+      },
+      {
+        "window_id": "W3",
+        "source_file": "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv",
+        "source_manifest_index": 2,
+        "rows": "all prepared rows in this source, processed in file order only; file order is not treated as time",
+        "labels_available_to_detector_or_adaptation_at_window_start": false,
+        "order_basis": "frozen source manifest position, not timestamp or filename chronology"
+      },
+      {
+        "window_id": "W4",
+        "source_file": "Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv",
+        "source_manifest_index": 4,
+        "rows": "all prepared rows in this source, processed in file order only; file order is not treated as time",
+        "labels_available_to_detector_or_adaptation_at_window_start": false,
+        "order_basis": "frozen source manifest position, not timestamp or filename chronology"
+      }
+    ],
+    "what_changes": "Source identity and empirical feature distribution P(X), plus binary class prevalence P(Y), may vary between windows. These are measured; neither is assumed to be concept drift.",
+    "window_exposure": "At each window the model predicts and the drift monitor sees features only. Evaluation labels are withheld until the next complete window boundary. Labels of the final window are evaluation-only and never enter adaptation.",
+    "label_delay": "one complete evaluation window; labels for Wk are released only after W(k+1) closes"
+  },
+  "model": {
+    "architecture": "sklearn RandomForestClassifier for all strategies",
+    "parameters": {
+      "n_estimators": 100,
+      "max_depth": 18,
+      "max_features": "sqrt",
+      "min_samples_leaf": 2,
+      "class_weight": "balanced_subsample",
+      "n_jobs": 1,
+      "random_state": "run_seed"
+    },
+    "seeds": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ],
+    "same_parameters_features_and_seed_per_paired_strategy": true,
+    "prediction_rule": "Benign versus Attack using the binary label mapping above; no UNKNOWN output or novelty claim."
+  },
+  "strategies": {
+    "static": {
+      "rule": "Fit once on initial-fit rows; never update."
+    },
+    "periodic": {
+      "rule": "At the end of every second completed evaluation window, rebuild independently of drift output using only labels already released under the one-window delay. Execute a scheduled update only when at least one later evaluation window remains; therefore the W2 update can affect W3 and the terminal W4 boundary has no update."
+    },
+    "drift_triggered": {
+      "rule": "Rebuild only after the frozen PSI trigger fires. The trigger uses current-window X only; adaptation waits until eligible earlier-window labels are released.",
+      "detector_reference_reset": "After an accepted update, rebuild the PSI reference from a deterministic X-only sample of the accepted fit buffer. No current-window labels enter the reference.",
+      "rearm": "After accepted update and reference reset; a rejected update does not reset the reference."
+    }
+  },
+  "drift_detector": {
+    "name": "Population Stability Index (PSI)",
+    "claim": "Operational input-distribution shift signal for P(X) only; it does not establish concept drift or P(Y|X) change.",
+    "monitored_features": "all 77 frozen model features; Label and excluded identifier/time fields are not monitored",
+    "reference_window": "initial-fit rows; deterministic 50,000-row X-only sample",
+    "comparison_window": "each complete sequential source window; deterministic uniform hash-selected sample of 10,000 rows",
+    "minimum_sample_size": {
+      "reference_rows": 50000,
+      "comparison_rows": 10000
+    },
+    "binning": "Per-feature decile cut points fitted once on the reference sample only; preserve unique cut points, explicit underflow/overflow bins, and a defined constant-reference-feature binning rule. Freeze bin edges before W1.",
+    "smoothing": "Add 0.5 to each bin count before converting counts to proportions.",
+    "statistic": "PSI_j = sum_b (q_jb - p_jb) * ln(q_jb / p_jb), using smoothed reference and comparison proportions for feature j.",
+    "per_feature_threshold": 0.2,
+    "window_trigger": "trigger when at least 5 of 77 monitored features have PSI >= 0.20 in the same comparison window",
+    "multiple_testing": "No p-value familywise claim: PSI threshold is an operational rule, not a significance test. Requiring five feature thresholds is a predeclared guard against a single-feature trigger; dependence among features remains.",
+    "validation": "Run the same frozen PSI rule on the disjoint initial validation rows against the initial reference and report any signal; do not retune bins or thresholds from validation or evaluation outcomes."
+  },
+  "adaptation": {
+    "mechanism": "Rebuild the same RF from scratch on a bounded rolling buffer; no warm-start or incremental-learning claim.",
+    "triggered_timing": "At a boundary with a PSI signal, use only already released labels from windows that closed at least one full window earlier. A Wk signal cannot use Wk labels. A W4 signal is recorded but cannot produce an update because no later evaluation window remains.",
+    "periodic_timing": "Every second window boundary, using the same label-availability rule.",
+    "fit_buffer": {
+      "initial_replay": "up to 20,000 rows per binary class from the initial-fit pool, selected deterministically",
+      "recent_history": "up to 10,000 rows per binary class per eligible labeled source window, retaining at most the three most recent eligible windows",
+      "maximum_total_rows": 100000,
+      "sampling": "deterministic SHA-256-ranked sampling using the run seed and source/window/class identity; no duplicates across buffer components",
+      "initial_replay_rows_per_class": 20000,
+      "recent_rows_per_class_per_window": 10000,
+      "maximum_recent_windows": 3
+    },
+    "labels_allowed": "only frozen dataset labels from windows released after the one-window delay; verify labels against the prepared source record before adding them",
+    "labels_forbidden": "current or future evaluation-window labels, final-window labels, and labels from the forgetting anchor",
+    "frequency_limit": "at most one model rebuild at a boundary, at most one pending trigger, and no terminal update without a subsequent evaluation window",
+    "rollback": {
+      "reference": "sealed initial forgetting-regression anchor under the current accepted model",
+      "reject_candidate_if": "anchor macro F1 decreases by more than 0.05 absolute OR anchor benign FPR increases by more than 0.02 absolute relative to the initial accepted model",
+      "action": "discard candidate, retain prior accepted model, record rollback and update cost"
+    }
+  },
+  "evaluation": {
+    "primary_metrics": [
+      "macro_f1",
+      "per_class_f1",
+      "benign_fpr",
+      "attack_fnr_as_benign"
+    ],
+    "secondary_metrics": [
+      "weighted_f1",
+      "binary_class_support",
+      "P(Y)_benign_attack_prevalence",
+      "per_feature_PSI"
+    ],
+    "required_phases": [
+      "initial_validation_before_shift",
+      "first_PSI-triggered_window_before_adaptation",
+      "each_window_before_any_update",
+      "first_window_after_accepted_update",
+      "fixed_forgetting_anchor_after_each_update"
+    ],
+    "performance_recovery": "Report per-window absolute macro-F1 and per-class F1 changes versus initial validation; report post-adaptation change versus the immediately pre-adaptation window. Use a recovery ratio only when a measured pre/post degradation exists; otherwise mark not applicable.",
+    "adaptation_latency": "wall-clock from eligible label release and update decision to candidate fit completion; report per update and total",
+    "unnecessary_adaptations": "For periodic strategy, count executed scheduled rebuilds with no PSI signal in the preceding two windows. The terminal W4 scheduled slot is recorded as skipped, not an adaptation. For drift-triggered strategy, report candidate rebuilds later followed by rollback and separately report any update with no improvement in next-window macro F1; do not use future labels to decide triggers.",
+    "forgetting_regression": "After each candidate fit, evaluate the unchanged sealed initial anchor. Apply the frozen rollback limits; report anchor macro F1, per-class F1, and benign FPR before/after."
+  },
+  "statistical_analysis": {
+    "runs": 5,
+    "seed_set": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ],
+    "pairing": "Each strategy uses the same seed, source ordering, data partitions, and evaluation windows; compare strategy differences paired by seed and window.",
+    "summary": "Report mean and standard deviation across the five paired seeds for every strategy/window/metric, plus paired mean differences and 95% paired t confidence intervals; report paired standardized mean difference (Cohen dz) where paired-difference standard deviation is nonzero.",
+    "interpretation_limit": "Seeds are algorithmic repeats on the same finite sources, not independent dataset captures. Do not treat windows or seeds as independent population samples or claim broad generalization.",
+    "no_results_fabricated": true
+  },
+  "leakage_controls": [
+    "All source file SHA-256 values and prepared artifact SHA-256 values must match this protocol and Stage 5D preparation manifest before any later run.",
+    "Source filenames, source IDs, timestamps, and Label are never predictors.",
+    "The 77-feature schema and preprocessing are frozen; no fit or feature selection uses evaluation windows.",
+    "PSI bin edges are fit only on the initial-fit reference sample and frozen before W1; evaluation labels never enter PSI.",
+    "Current-window labels are withheld until the following window closes; triggers use X only.",
+    "Adaptation uses only eligible previously labeled windows and the initial replay buffer; never use current, future, final-window, or anchor labels.",
+    "No evaluation results may change source order, bins, PSI threshold, trigger count, adaptation size, seed set, rollback limits, or metrics.",
+    "Prior Stage 5E.2A/2B/2C artifacts remain contextual and are not used for tuning or threshold selection."
+  ],
+  "reproducibility": {
+    "seed_set": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ],
+    "source_order_is_manifest_order_not_time": true,
+    "split_manifest_required": true,
+    "artifact_format": "JSON run manifest plus per-window JSONL predictions/metrics and CSV summary tables; record hashes for all inputs and outputs.",
+    "required_artifacts": [
+      "protocol JSON",
+      "run configuration",
+      "source/split hashes",
+      "per-window class counts",
+      "PSI feature/bin counts",
+      "per-window predictions or confusion aggregates",
+      "adaptation buffer membership hashes",
+      "model config and seed",
+      "timing/resource records",
+      "rollback/update records",
+      "paired summary tables"
+    ],
+    "expected_plots": [
+      "macro and per-class F1 by window and strategy",
+      "benign FPR and attack FNR by window",
+      "PSI by feature/window with 0.20 threshold",
+      "adaptation/rollback event timeline",
+      "forgetting-anchor metrics before and after each update"
+    ]
+  },
+  "known_limitations": [
+    "This source sequence is not chronological and cannot support a temporal concept-drift claim.",
+    "Dataset source/capture/extractor comparability is unverified; source identity may confound P(X) changes.",
+    "All selected sources have been used in prior stages; Stage 5F is a protocol-defined within-dataset comparison, not a pristine external holdout.",
+    "Binary Benign/Attack mapping does not test attack-family classification, novelty rejection, or unknown-class handling.",
+    "Labels are retrospective dataset labels released under a simulated delay, not labels collected in an operational system.",
+    "A PSI alarm is an input-distribution shift indication, not proof that P(Y|X) changed."
+  ],
+  "implementation_boundary": "Protocol only. No PSI detector, RF fit, adaptation loop, predictions, or result artifacts are implemented or run in Stage 5F-PROTOCOL."
+}

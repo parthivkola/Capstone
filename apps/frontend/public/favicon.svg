@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Sentinel">
+  <rect width="32" height="32" rx="7" fill="#1a2b45"/>
+  <path d="M16 6 24 10v7c0 5.2-3.4 9.1-8 10.8C11.4 26.1 8 22.2 8 17v-7l8-4z" fill="#68a5ff"/>
+  <path d="M16 11.2 20.5 13.5v3.3c0 2.7-1.7 4.7-4.5 5.7-2.8-1-4.5-3-4.5-5.7v-3.3L16 11.2z" fill="#101c30"/>
+</svg>
